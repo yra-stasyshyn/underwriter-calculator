@@ -3,7 +3,7 @@ import React from "react";
 interface Props {
   label: string;
   value: number | undefined;
-  setValue?: React.Dispatch<React.SetStateAction<number>>;
+  setValue?: (val: number) => void;
   options: Array<{
     title: string;
     value: number;
@@ -19,7 +19,7 @@ const Select = (props: Props) => {
     <div>
       <label>{label}</label>
       <select value={value} onChange={handleChange} disabled={!!disabled}>
-        <option disabled={true}></option>
+        <option></option>
         {options.map((option, idx) => (
           <option key={`${label}-${idx}`} value={option.value}>{option.title}</option>
         ))}
