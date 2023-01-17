@@ -1,0 +1,1 @@
+export const NUM_OF_TOTAL_CASES = 36;
