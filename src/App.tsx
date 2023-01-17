@@ -31,7 +31,7 @@ function App() {
     (input.avgBalance || 0) +
     (input.incomeLastedForThreePaydays || 0) +
     (input.employedMonthlyIncome || 0) +
-    (input.numOfMicroloans || 0) +
+    (input.numOfMicroloans === 1 ? -1 : (input.numOfMicroloans || 0)) +
     (input.monthlyLoansAmount || 0) +
     (input.newLoansWithin30Days || 0) +
     (input.numOfNSFWithin30Days || 0) +
@@ -53,7 +53,7 @@ function App() {
     (input.employmentVerification || 0) +
     (input.renewal || 0);
 
-  const probabilityOfPayback = score / NUM_OF_TOTAL_CASES;
+  const probabilityOfPayback = (score / NUM_OF_TOTAL_CASES * 100).toFixed(2);
 
   useEffect(() => {
     const avg = (balAfterPayday1 + balAfterPayday2 + balAfterPayday3 + balAfterPayday4 + balAfterPayday5 + balAfterPayday6) / 6;
@@ -70,7 +70,7 @@ function App() {
   }, [balAfterPayday1, balAfterPayday2, balAfterPayday3, balAfterPayday4, balAfterPayday5, balAfterPayday6]);
 
   useEffect(() => {
-    const total = monthlyLoan1 + monthlyLoan2 + monthlyLoan3 + monthlyLoan4 + monthlyLoan5 + monthlyLoan6 + monthlyLoan7 + monthlyLoan8 + monthlyLoan9 + monthlyLoan10;
+    const total = (monthlyLoan1 + monthlyLoan2 + monthlyLoan3 + monthlyLoan4 + monthlyLoan5 + monthlyLoan6 + monthlyLoan7 + monthlyLoan8 + monthlyLoan9 + monthlyLoan10) * 2;
     const newMonthlyLoansAmount = total === 0 ? -1
       : total < 500 ? 2
         : total < 1000 ? 0
@@ -148,12 +148,12 @@ function App() {
           <div className='user-input'>
             <Select
               label='Number of Microloans: '
-              value={input.employedMonthlyIncome}
-              setValue={val => setInput({ ...input, employedMonthlyIncome: val })}
+              value={input.numOfMicroloans}
+              setValue={val => setInput({ ...input, numOfMicroloans: val })}
               options={[
                 { title: "0", value: -1 },
                 { title: "1-2", value: 2 },
-                { title: "3-4", value: -1 },
+                { title: "3-4", value: 1 }, // designed value is -1, but let's use 1 since -1 conflicts.
                 { title: "5-6", value: -2 },
                 { title: "7+", value: -3 }
               ]}
@@ -180,7 +180,7 @@ function App() {
             <label>{`Monthly loan 9: `}</label>
             <input type="number" value={monthlyLoan9} onChange={e => setMonthlyLoan9(+e.target.value)} /> <br />
             <label>{`Monthly loan 10: `}</label>
-            <input type="number" value={monthlyLoan1} onChange={e => setMonthlyLoan10(+e.target.value)} /> <br />
+            <input type="number" value={monthlyLoan10} onChange={e => setMonthlyLoan10(+e.target.value)} /> <br />
             <Select
               label='Monthly loans amount: '
               value={input.monthlyLoansAmount}
@@ -286,8 +286,8 @@ function App() {
               value={input.overDraft}
               setValue={val => setInput({ ...input, overDraft: val })}
               options={[
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
+                { title: "Yes", value: 1 },
+                { title: "No", value: -1 }
               ]}
             />
           </div>
@@ -438,7 +438,7 @@ function App() {
         <legend>Output result</legend>
         <div>
           <p>{`Score: ${score}`}</p>
-          <p>{`Probability of Payback: ${probabilityOfPayback}`}</p>
+          <p>{`Probability of Payback: ${probabilityOfPayback}%`}</p>
         </div>
       </fieldset>
     </div>
