@@ -21,10 +21,12 @@ function App() {
         : avg < 1000 ? 2
           : avg < 1500 ? 3
             : 6;
+    setBalAfterPayday(newAvgBalance);
     setInput({
       ...input,
       avgBalance: newAvgBalance
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [balAfterPayday1, balAfterPayday2, balAfterPayday3, balAfterPayday4, balAfterPayday5, balAfterPayday6]);
 
   return (
