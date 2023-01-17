@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import Select from './core/components/select/Select';
-import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
 import { InputData } from './core/interfaces/io.type';
+
+import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
+import "./App.css"
 
 function App() {
   const [input, setInput] = useState<InputData>({});
@@ -84,14 +86,13 @@ function App() {
   return (
     <div>
       <div>
-        <span>Logo</span>
-        <span>Underwriter Calculator</span>
+        <h1>Underwriter Calculator</h1>
       </div>
 
       <fieldset>
         <legend>Input fields</legend>
         <div>
-          <div>
+          <div className='user-input'>
             <label>{`Bal after 1 payday: `}</label>
             <input type="number" value={balAfterPayday1} onChange={e => setBalAfterPayday1(+e.target.value)} /> <br />
             <label>{`Bal after 2 payday: `}</label>
@@ -104,9 +105,6 @@ function App() {
             <input type="number" value={balAfterPayday5} onChange={e => setBalAfterPayday5(+e.target.value)} /> <br />
             <label>{`Bal after 6 payday: `}</label>
             <input type="number" value={balAfterPayday6} onChange={e => setBalAfterPayday6(+e.target.value)} /> <br />
-          </div>
-
-          <div>
             <Select
               label='AVG balance: '
               value={input.avgBalance}
@@ -121,7 +119,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
               value={input.incomeLastedForThreePaydays}
@@ -133,7 +131,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Employed monthly income: '
               value={input.employedMonthlyIncome}
@@ -147,7 +145,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Number of Microloans: '
               value={input.employedMonthlyIncome}
@@ -162,7 +160,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <label>{`Monthly load 1: `}</label>
             <input type="number" value={monthlyLoan1} onChange={e => setMonthlyLoan1(+e.target.value)} /> <br />
             <label>{`Monthly loan 2: `}</label>
@@ -183,9 +181,6 @@ function App() {
             <input type="number" value={monthlyLoan9} onChange={e => setMonthlyLoan9(+e.target.value)} /> <br />
             <label>{`Monthly loan 10: `}</label>
             <input type="number" value={monthlyLoan1} onChange={e => setMonthlyLoan10(+e.target.value)} /> <br />
-          </div>
-
-          <div>
             <Select
               label='Monthly loans amount: '
               value={input.monthlyLoansAmount}
@@ -200,7 +195,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='New loans within 30 days: '
               value={input.newLoansWithin30Days}
@@ -213,7 +208,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='# of NSF within 30 days: '
               value={input.numOfNSFWithin30Days}
@@ -225,7 +220,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='# of NSF within 60 days: '
               value={input.numOfNSFWithin60Days}
@@ -237,7 +232,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='# of NSF within 90 days: '
               value={input.numOfNSFWithin90Days}
@@ -249,7 +244,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='# of Payment opposition within 30 days: '
               value={input.numOfPaymentOppositionWithin30Days}
@@ -261,7 +256,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='# of Payment opposition within 60 days: '
               value={input.numOfPaymentOppositionWithin60Days}
@@ -273,7 +268,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='# of Payment opposition within 90 days: '
               value={input.numOfPaymentOppositionWithin90Days}
@@ -285,7 +280,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Overdraft: '
               value={input.overDraft}
@@ -297,7 +292,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Gambling: '
               value={input.gambling}
@@ -309,7 +304,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Marijuana: '
               value={input.marijuana}
@@ -321,7 +316,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Bank account time line: '
               value={input.bankAccountTimeline}
@@ -334,7 +329,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Employment matches: '
               value={input.employmentMatches}
@@ -346,7 +341,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Reference match: '
               value={input.referencesMatch}
@@ -358,7 +353,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Address match: '
               value={input.addressMatch}
@@ -370,7 +365,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Bankruptcy/conprop? (<6 mos): '
               value={input.bankruptcy}
@@ -382,7 +377,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Income source: '
               value={input.incomeSource}
@@ -396,7 +391,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Employed: '
               value={input.employed}
@@ -410,7 +405,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Employment Verification: '
               value={input.employmentVerification}
@@ -422,7 +417,7 @@ function App() {
             />
           </div>
 
-          <div>
+          <div className='user-input'>
             <Select
               label='Renewal? '
               value={input.renewal}
