@@ -20,7 +20,7 @@ const Select = (props: Props) => {
   const handleChange = (e: SelectChangeEvent) => setValue && setValue(+e.target.value);
 
   return (
-    <FormControl sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, minWidth: 200 }} size="small">
+    <FormControl variant="standard" sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, minWidth: 200 }} size="small">
       <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
       <MUISelect
         value={strValue}

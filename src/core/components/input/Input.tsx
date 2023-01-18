@@ -12,7 +12,7 @@ const Input = (props: Props) => {
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
-      <TextField type="number" size="small" value={value} onChange={setValue} />
+      <TextField type="number" variant="standard" size="small" value={value} onChange={setValue} />
     </Stack>
   )
 }
