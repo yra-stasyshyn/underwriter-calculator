@@ -29,7 +29,9 @@ legend {
   font-size: x-large;
 }
 select {
-  padding: 6px;
+  padding-left: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   border-radius: 6px;
 }
 input {
@@ -49,4 +51,8 @@ label {
 .form-row {
   padding-top: 4px;
   padding-bottom: 4px;
+}
+.col-2-grid {
+  display: grid;
+  grid-template-columns: auto auto;
 }

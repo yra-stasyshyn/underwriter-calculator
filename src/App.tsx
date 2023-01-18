@@ -90,10 +90,10 @@ function App() {
       </div>
 
       <fieldset>
-        <legend>Input fields</legend>
+        <legend>Applicant Financial Information</legend>
         <div>
           {/* Input 1 */}
-          <div className='user-input'>
+          <div className='user-input col-2-grid'>
             <div className='form-row'>
               <label>{`Bal after 1 payday: `}</label>
               <input type="number" value={balAfterPayday1} onChange={e => setBalAfterPayday1(+e.target.value)} /> <br />
@@ -118,7 +118,9 @@ function App() {
               <label>{`Bal after 6 payday: `}</label>
               <input type="number" value={balAfterPayday6} onChange={e => setBalAfterPayday6(+e.target.value)} /> <br />
             </div>
+          </div>
 
+          <div className='user-input'>
             <Select
               label='AVG balance: '
               value={input.avgBalance}
@@ -178,7 +180,7 @@ function App() {
           </div>
 
           {/* Input 5 */}
-          <div className='user-input'>
+          <div className='user-input col-2-grid'>
             <div className='form-row'>
               <label>{`Monthly load 1: `}</label>
               <input type="number" value={monthlyLoan1} onChange={e => setMonthlyLoan1(+e.target.value)} /> <br />
@@ -219,6 +221,9 @@ function App() {
               <label>{`Monthly loan 10: `}</label>
               <input type="number" value={monthlyLoan10} onChange={e => setMonthlyLoan10(+e.target.value)} /> <br />
             </div>
+          </div>
+
+          <div className='user-input'>
             <Select
               label='Monthly loans amount: '
               value={input.monthlyLoansAmount}
@@ -492,7 +497,7 @@ function App() {
       </fieldset>
 
       <fieldset>
-        <legend>Output result</legend>
+        <legend>Applicant Lending Result</legend>
         <div>
           <p>{`Score: ${score}`}</p>
           <p>{`Probability of Payback: ${probabilityOfPayback}%`}</p>
