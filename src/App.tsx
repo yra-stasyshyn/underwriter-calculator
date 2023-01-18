@@ -96,8 +96,8 @@ function App() {
       <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
       <Typography variant='h3' align='center' sx={{ fontWeight: "bold", m: "auto", marginBottom: 6 }}>Underwriter Calculator</Typography>
 
-      <StyledCard>
-        <StyledCardHeader>Applicant Financial Information</StyledCardHeader>
+      <Card sx={{ padding: 4, borderRadius: 16 }}>
+        <Typography variant="h4" color="#31af20" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Financial Information</Typography>
         <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {/* Input 1 */}
           <Grid container spacing={2}>
@@ -518,28 +518,21 @@ function App() {
               ]}
           />
         </CardContent >
-      </StyledCard >
+      </Card >
 
       <Box sx={{ width: 1, height: 1, padding: 4 }} />
 
-      <StyledCard>
-        <StyledCardHeader>Applicant Lending Result</StyledCardHeader>
+      <Card sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
+        <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
         <CardContent>
           <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score}`}</Typography>
           <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback}%`}</Typography>
         </CardContent>
-      </StyledCard>
+      </Card>
 
       <Box sx={{ width: 1, height: 1, padding: 6 }} />
     </Container >
   );
 }
-
-const StyledCard = (props: { children?: any }) => (
-  <Card sx={{ padding: 4, borderRadius: 16 }}>{props.children}</Card>
-)
-const StyledCardHeader = (props: { children?: any }) => (
-  <Typography variant="h4" color="#31af20" align="center" sx={{ marginBottom: 4 }}>{props.children}</Typography>
-)
 
 export default App;
