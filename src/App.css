@@ -1,6 +1,7 @@
 html {
   font-family: 'Roboto', sans-serif;
-  background-color: #eee;
+  background-color: #F5F5F5;
+  color: #FFF;
 }
 .container {
   padding-left: 20px;  
@@ -12,10 +13,7 @@ html {
     padding-right: 8px;
   }
 }
-h1 {
-  text-align: center;
-}
-fieldset {
+section {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -25,8 +23,11 @@ fieldset {
   box-sizing: border-box;
   border-radius: 40px;
 }
+
 legend {
   font-size: x-large;
+  margin-bottom: 1em;
+  font-weight: bold;
 }
 select {
   padding-left: 6px;
@@ -58,4 +59,25 @@ label {
 .col-2-grid {
   display: grid;
   grid-template-columns: auto auto;
+}
+
+ /* Colors */
+ .green {
+  background-color: #008A00;
+ }
+ .orange {
+  background-color: #F8820C;
+ }
+ .white {
+  color: #FFF;
+  background-color: #FFF;
+  border-radius: 6px;
+
+ }
+ .background {
+  background-color: #F5F5F5;
+ }
+/* Utils */
+.margin-top {
+  margin-top: 20px;
 }
