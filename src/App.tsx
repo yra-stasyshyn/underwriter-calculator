@@ -92,9 +92,9 @@ function App() {
   }, [monthlyLoan1, monthlyLoan2, monthlyLoan3, monthlyLoan4, monthlyLoan5, monthlyLoan6, monthlyLoan7, monthlyLoan8, monthlyLoan9, monthlyLoan10]);
 
   return (
-    <Container maxWidth="lg" sx={{ backgroundColor: "#ccc" }}>
+    <Container maxWidth="lg">
       <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
-      <Typography variant='h3' align='center' sx={{ fontWeight: "bold", m: "auto", marginBottom: 8 }}>Underwriter Calculator</Typography>
+      <Typography variant='h3' align='center' sx={{ fontWeight: "bold", m: "auto", marginBottom: 6 }}>Underwriter Calculator</Typography>
 
       <StyledCard>
         <StyledCardHeader>Applicant Financial Information</StyledCardHeader>
