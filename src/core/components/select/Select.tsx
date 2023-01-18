@@ -1,3 +1,7 @@
+import { FormControl, Typography } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+import MUISelect, { SelectChangeEvent } from '@mui/material/Select';
+
 interface Props {
   label: string;
   value: number | undefined;
@@ -11,20 +15,25 @@ interface Props {
 const Select = (props: Props) => {
   const { label, value, setValue, options, disabled } = props;
 
-  const handleChange = (e: any) => setValue && setValue(+e.target.value);
+  const strValue = typeof value === "undefined" ? "" : value.toString();
+
+  const handleChange = (e: SelectChangeEvent) => setValue && setValue(+e.target.value);
 
   return (
-    <div>
-      <label>{`${label} (${value}) `}</label>
-      <select value={value} onChange={handleChange} disabled={!!disabled}>
-        <option disabled={!!disabled} hidden={true} selected={typeof value === "undefined"}>
-          {!!disabled ? "" : "- select -"}
-        </option>
+    <FormControl sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, minWidth: 200 }} size="small">
+      <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
+      <MUISelect
+        value={strValue}
+        onChange={handleChange}
+        displayEmpty
+        disabled={!!disabled}
+      >
+        {!disabled && <MenuItem disabled hidden value="">{`- select -`}</MenuItem>}
         {options.map((option, idx) => (
-          <option key={`${label}-${idx}`} value={option.value}>{option.title}</option>
+          <MenuItem key={`${label}-${idx}`} value={option.value.toString()}>{option.title}</MenuItem>
         ))}
-      </select>
-    </div>
+      </MUISelect>
+    </FormControl>
   );
 }
 
