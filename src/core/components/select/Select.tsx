@@ -1,3 +1,7 @@
+import FormControl from '@mui/material/FormControl';
+import SelectUI from '@mui/material/Select';
+import { InputLabel } from '@mui/material';
+
 interface Props {
   label: string;
   value: number | undefined;
@@ -8,23 +12,24 @@ interface Props {
   }>;
   disabled?: boolean;
 }
+
 const Select = (props: Props) => {
   const { label, value, setValue, options, disabled } = props;
 
   const handleChange = (e: any) => setValue && setValue(+e.target.value);
 
   return (
-    <div>
-      <label>{`${label} (${value}) `}</label>
-      <select value={value} onChange={handleChange} disabled={!!disabled}>
+    <FormControl color='secondary' fullWidth variant='filled' sx={{backgroundColor: '#fff', borderRadius: '4px', color: '#000'}} >
+      <InputLabel>{`${label} (${value}) `}</InputLabel>
+      <SelectUI value={value} onChange={handleChange} disabled={!!disabled}>
         <option disabled={!!disabled} hidden={true} selected={typeof value === "undefined"}>
           {!!disabled ? "" : "- select -"}
         </option>
         {options.map((option, idx) => (
           <option key={`${label}-${idx}`} value={option.value}>{option.title}</option>
         ))}
-      </select>
-    </div>
+      </SelectUI>
+    </FormControl>
   );
 }
 
