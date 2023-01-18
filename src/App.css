@@ -34,6 +34,9 @@ select {
   padding-bottom: 6px;
   border-radius: 6px;
 }
+select:invalid {
+  color: gray;
+}
 input {
   padding: 6px;
   border-radius: 6px;

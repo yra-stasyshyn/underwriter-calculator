@@ -17,7 +17,9 @@ const Select = (props: Props) => {
     <div>
       <label>{`${label} (${value}) `}</label>
       <select value={value} onChange={handleChange} disabled={!!disabled}>
-        <option>{!!disabled ? "" : "- select -"}</option>
+        <option disabled={!!disabled} hidden={true} selected={typeof value === "undefined"}>
+          {!!disabled ? "" : "- select -"}
+        </option>
         {options.map((option, idx) => (
           <option key={`${label}-${idx}`} value={option.value}>{option.title}</option>
         ))}
