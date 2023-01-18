@@ -93,7 +93,7 @@ function App() {
 
   return (
     <Container maxWidth="lg" sx={{ backgroundColor: "#ccc" }}>
-      <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} />
+      <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
       <Typography variant='h3' align='center' sx={{ fontWeight: "bold", m: "auto", marginBottom: 8 }}>Underwriter Calculator</Typography>
 
       <StyledCard>
