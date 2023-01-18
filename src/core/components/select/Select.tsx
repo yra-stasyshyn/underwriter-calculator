@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   label: string;
   value: number | undefined;
@@ -17,7 +15,7 @@ const Select = (props: Props) => {
 
   return (
     <div>
-      <label>{label}</label>
+      <label>{`${label} (${value}) `}</label>
       <select value={value} onChange={handleChange} disabled={!!disabled}>
         <option></option>
         {options.map((option, idx) => (

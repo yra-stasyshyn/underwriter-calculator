@@ -84,7 +84,7 @@ function App() {
   }, [monthlyLoan1, monthlyLoan2, monthlyLoan3, monthlyLoan4, monthlyLoan5, monthlyLoan6, monthlyLoan7, monthlyLoan8, monthlyLoan9, monthlyLoan10]);
 
   return (
-    <div>
+    <div className='container'>
       <div>
         <h1>Underwriter Calculator</h1>
       </div>
@@ -92,19 +92,33 @@ function App() {
       <fieldset>
         <legend>Input fields</legend>
         <div>
+          {/* Input 1 */}
           <div className='user-input'>
-            <label>{`Bal after 1 payday: `}</label>
-            <input type="number" value={balAfterPayday1} onChange={e => setBalAfterPayday1(+e.target.value)} /> <br />
-            <label>{`Bal after 2 payday: `}</label>
-            <input type="number" value={balAfterPayday2} onChange={e => setBalAfterPayday2(+e.target.value)} /> <br />
-            <label>{`Bal after 3 payday: `}</label>
-            <input type="number" value={balAfterPayday3} onChange={e => setBalAfterPayday3(+e.target.value)} /> <br />
-            <label>{`Bal after 4 payday: `}</label>
-            <input type="number" value={balAfterPayday4} onChange={e => setBalAfterPayday4(+e.target.value)} /> <br />
-            <label>{`Bal after 5 payday: `}</label>
-            <input type="number" value={balAfterPayday5} onChange={e => setBalAfterPayday5(+e.target.value)} /> <br />
-            <label>{`Bal after 6 payday: `}</label>
-            <input type="number" value={balAfterPayday6} onChange={e => setBalAfterPayday6(+e.target.value)} /> <br />
+            <div className='form-row'>
+              <label>{`Bal after 1 payday: `}</label>
+              <input type="number" value={balAfterPayday1} onChange={e => setBalAfterPayday1(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Bal after 2 payday: `}</label>
+              <input type="number" value={balAfterPayday2} onChange={e => setBalAfterPayday2(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Bal after 3 payday: `}</label>
+              <input type="number" value={balAfterPayday3} onChange={e => setBalAfterPayday3(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Bal after 4 payday: `}</label>
+              <input type="number" value={balAfterPayday4} onChange={e => setBalAfterPayday4(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Bal after 5 payday: `}</label>
+              <input type="number" value={balAfterPayday5} onChange={e => setBalAfterPayday5(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Bal after 6 payday: `}</label>
+              <input type="number" value={balAfterPayday6} onChange={e => setBalAfterPayday6(+e.target.value)} /> <br />
+            </div>
+
             <Select
               label='AVG balance: '
               value={input.avgBalance}
@@ -119,6 +133,7 @@ function App() {
             />
           </div>
 
+          {/* Input 2 */}
           <div className='user-input'>
             <Select
               label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
@@ -131,6 +146,7 @@ function App() {
             />
           </div>
 
+          {/* Input 3 */}
           <div className='user-input'>
             <Select
               label='Employed monthly income: '
@@ -145,6 +161,7 @@ function App() {
             />
           </div>
 
+          {/* Input 4 */}
           <div className='user-input'>
             <Select
               label='Number of Microloans: '
@@ -160,27 +177,48 @@ function App() {
             />
           </div>
 
+          {/* Input 5 */}
           <div className='user-input'>
-            <label>{`Monthly load 1: `}</label>
-            <input type="number" value={monthlyLoan1} onChange={e => setMonthlyLoan1(+e.target.value)} /> <br />
-            <label>{`Monthly loan 2: `}</label>
-            <input type="number" value={monthlyLoan2} onChange={e => setMonthlyLoan2(+e.target.value)} /> <br />
-            <label>{`Monthly loan 3: `}</label>
-            <input type="number" value={monthlyLoan3} onChange={e => setMonthlyLoan3(+e.target.value)} /> <br />
-            <label>{`Monthly loan 4: `}</label>
-            <input type="number" value={monthlyLoan4} onChange={e => setMonthlyLoan4(+e.target.value)} /> <br />
-            <label>{`Monthly loan 5: `}</label>
-            <input type="number" value={monthlyLoan5} onChange={e => setMonthlyLoan5(+e.target.value)} /> <br />
-            <label>{`Monthly loan 6: `}</label>
-            <input type="number" value={monthlyLoan6} onChange={e => setMonthlyLoan6(+e.target.value)} /> <br />
-            <label>{`Monthly loan 7: `}</label>
-            <input type="number" value={monthlyLoan7} onChange={e => setMonthlyLoan7(+e.target.value)} /> <br />
-            <label>{`Monthly loan 8: `}</label>
-            <input type="number" value={monthlyLoan8} onChange={e => setMonthlyLoan8(+e.target.value)} /> <br />
-            <label>{`Monthly loan 9: `}</label>
-            <input type="number" value={monthlyLoan9} onChange={e => setMonthlyLoan9(+e.target.value)} /> <br />
-            <label>{`Monthly loan 10: `}</label>
-            <input type="number" value={monthlyLoan10} onChange={e => setMonthlyLoan10(+e.target.value)} /> <br />
+            <div className='form-row'>
+              <label>{`Monthly load 1: `}</label>
+              <input type="number" value={monthlyLoan1} onChange={e => setMonthlyLoan1(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 2: `}</label>
+              <input type="number" value={monthlyLoan2} onChange={e => setMonthlyLoan2(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 3: `}</label>
+              <input type="number" value={monthlyLoan3} onChange={e => setMonthlyLoan3(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 4: `}</label>
+              <input type="number" value={monthlyLoan4} onChange={e => setMonthlyLoan4(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 5: `}</label>
+              <input type="number" value={monthlyLoan5} onChange={e => setMonthlyLoan5(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 6: `}</label>
+              <input type="number" value={monthlyLoan6} onChange={e => setMonthlyLoan6(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 7: `}</label>
+              <input type="number" value={monthlyLoan7} onChange={e => setMonthlyLoan7(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 8: `}</label>
+              <input type="number" value={monthlyLoan8} onChange={e => setMonthlyLoan8(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 9: `}</label>
+              <input type="number" value={monthlyLoan9} onChange={e => setMonthlyLoan9(+e.target.value)} /> <br />
+            </div>
+            <div className='form-row'>
+              <label>{`Monthly loan 10: `}</label>
+              <input type="number" value={monthlyLoan10} onChange={e => setMonthlyLoan10(+e.target.value)} /> <br />
+            </div>
             <Select
               label='Monthly loans amount: '
               value={input.monthlyLoansAmount}
@@ -195,6 +233,7 @@ function App() {
             />
           </div>
 
+          {/* Input 6 */}
           <div className='user-input'>
             <Select
               label='New loans within 30 days: '
@@ -208,6 +247,7 @@ function App() {
             />
           </div>
 
+          {/* Input 7 */}
           <div className='user-input'>
             <Select
               label='# of NSF within 30 days: '
@@ -220,6 +260,7 @@ function App() {
             />
           </div>
 
+          {/* Input 8 */}
           <div className='user-input'>
             <Select
               label='# of NSF within 60 days: '
@@ -232,6 +273,7 @@ function App() {
             />
           </div>
 
+          {/* Input 9 */}
           <div className='user-input'>
             <Select
               label='# of NSF within 90 days: '
@@ -244,6 +286,7 @@ function App() {
             />
           </div>
 
+          {/* Input 10 */}
           <div className='user-input'>
             <Select
               label='# of Payment opposition within 30 days: '
@@ -256,6 +299,7 @@ function App() {
             />
           </div>
 
+          {/* Input 11 */}
           <div className='user-input'>
             <Select
               label='# of Payment opposition within 60 days: '
@@ -268,6 +312,7 @@ function App() {
             />
           </div>
 
+          {/* Input 12 */}
           <div className='user-input'>
             <Select
               label='# of Payment opposition within 90 days: '
@@ -280,6 +325,7 @@ function App() {
             />
           </div>
 
+          {/* Input 13 */}
           <div className='user-input'>
             <Select
               label='Overdraft: '
@@ -292,6 +338,7 @@ function App() {
             />
           </div>
 
+          {/* Input 14 */}
           <div className='user-input'>
             <Select
               label='Gambling: '
@@ -304,6 +351,7 @@ function App() {
             />
           </div>
 
+          {/* Input 15 */}
           <div className='user-input'>
             <Select
               label='Marijuana: '
@@ -316,6 +364,7 @@ function App() {
             />
           </div>
 
+          {/* Input 16 */}
           <div className='user-input'>
             <Select
               label='Bank account time line: '
@@ -329,6 +378,7 @@ function App() {
             />
           </div>
 
+          {/* Input 17 */}
           <div className='user-input'>
             <Select
               label='Employment matches: '
@@ -341,6 +391,7 @@ function App() {
             />
           </div>
 
+          {/* Input 18 */}
           <div className='user-input'>
             <Select
               label='Reference match: '
@@ -353,6 +404,7 @@ function App() {
             />
           </div>
 
+          {/* Input 19 */}
           <div className='user-input'>
             <Select
               label='Address match: '
@@ -365,6 +417,7 @@ function App() {
             />
           </div>
 
+          {/* Input 20 */}
           <div className='user-input'>
             <Select
               label='Bankruptcy/conprop? (<6 mos): '
@@ -377,6 +430,7 @@ function App() {
             />
           </div>
 
+          {/* Input 21 */}
           <div className='user-input'>
             <Select
               label='Income source: '
@@ -391,6 +445,7 @@ function App() {
             />
           </div>
 
+          {/* Input 22 */}
           <div className='user-input'>
             <Select
               label='Employed: '
@@ -405,6 +460,7 @@ function App() {
             />
           </div>
 
+          {/* Input 23 */}
           <div className='user-input'>
             <Select
               label='Employment Verification: '
@@ -417,6 +473,7 @@ function App() {
             />
           </div>
 
+          {/* Input 24 */}
           <div className='user-input'>
             <Select
               label='Renewal? '
