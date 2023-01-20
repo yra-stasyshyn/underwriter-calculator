@@ -15,7 +15,7 @@ const Input = (props: Props) => {
       <TextField
         type="number"
         variant="standard"
-        placeholder="0"
+        placeholder=""
         size="small"
         value={value}
         onChange={setValue}
