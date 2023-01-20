@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 
 interface Props {
   label: string;
-  value: number;
+  value?: number;
   setValue: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 const Input = (props: Props) => {
@@ -12,7 +12,14 @@ const Input = (props: Props) => {
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
-      <TextField type="number" variant="standard" size="small" value={value} onChange={setValue} />
+      <TextField
+        type="number"
+        variant="standard"
+        placeholder="0"
+        size="small"
+        value={value}
+        onChange={setValue}
+      />
     </Stack>
   )
 }

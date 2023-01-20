@@ -1,4 +1,5 @@
-import { Box, Container } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { Box, Container, styled } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
@@ -11,60 +12,45 @@ import { InputData } from './core/interfaces/io.type';
 import Input from './core/components/input/Input';
 
 import "./App.css";
-import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
 import logoSrc from "./assets/images/logo.png";
+import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
 
 function App() {
   const [input, setInput] = useState<InputData>({});
 
-  const [balAfterPayday1, setBalAfterPayday1] = useState(0);
-  const [balAfterPayday2, setBalAfterPayday2] = useState(0);
-  const [balAfterPayday3, setBalAfterPayday3] = useState(0);
-  const [balAfterPayday4, setBalAfterPayday4] = useState(0);
-  const [balAfterPayday5, setBalAfterPayday5] = useState(0);
-  const [balAfterPayday6, setBalAfterPayday6] = useState(0);
+  const [balAfterPayday1, setBalAfterPayday1] = useState<number | undefined>();
+  const [balAfterPayday2, setBalAfterPayday2] = useState<number | undefined>();
+  const [balAfterPayday3, setBalAfterPayday3] = useState<number | undefined>();
+  const [balAfterPayday4, setBalAfterPayday4] = useState<number | undefined>();
+  const [balAfterPayday5, setBalAfterPayday5] = useState<number | undefined>();
+  const [balAfterPayday6, setBalAfterPayday6] = useState<number | undefined>();
 
-  const [monthlyLoan1, setMonthlyLoan1] = useState(0);
-  const [monthlyLoan2, setMonthlyLoan2] = useState(0);
-  const [monthlyLoan3, setMonthlyLoan3] = useState(0);
-  const [monthlyLoan4, setMonthlyLoan4] = useState(0);
-  const [monthlyLoan5, setMonthlyLoan5] = useState(0);
-  const [monthlyLoan6, setMonthlyLoan6] = useState(0);
-  const [monthlyLoan7, setMonthlyLoan7] = useState(0);
-  const [monthlyLoan8, setMonthlyLoan8] = useState(0);
-  const [monthlyLoan9, setMonthlyLoan9] = useState(0);
-  const [monthlyLoan10, setMonthlyLoan10] = useState(0);
+  const [monthlyLoan1, setMonthlyLoan1] = useState<number | undefined>();
+  const [monthlyLoan2, setMonthlyLoan2] = useState<number | undefined>();
+  const [monthlyLoan3, setMonthlyLoan3] = useState<number | undefined>();
+  const [monthlyLoan4, setMonthlyLoan4] = useState<number | undefined>();
+  const [monthlyLoan5, setMonthlyLoan5] = useState<number | undefined>();
+  const [monthlyLoan6, setMonthlyLoan6] = useState<number | undefined>();
+  const [monthlyLoan7, setMonthlyLoan7] = useState<number | undefined>();
+  const [monthlyLoan8, setMonthlyLoan8] = useState<number | undefined>();
+  const [monthlyLoan9, setMonthlyLoan9] = useState<number | undefined>();
+  const [monthlyLoan10, setMonthlyLoan10] = useState<number | undefined>();
 
-  const score =
-    (input.avgBalance || 0) +
-    (input.incomeLastedForThreePaydays || 0) +
-    (input.employedMonthlyIncome || 0) +
-    (input.numOfMicroloans === 1 ? -1 : (input.numOfMicroloans || 0)) +
-    (input.monthlyLoansAmount || 0) +
-    (input.newLoansWithin30Days || 0) +
-    (input.numOfNSFWithin30Days || 0) +
-    (input.numOfNSFWithin60Days || 0) +
-    (input.numOfNSFWithin90Days || 0) +
-    (input.numOfPaymentOppositionWithin30Days || 0) +
-    (input.numOfPaymentOppositionWithin60Days || 0) +
-    (input.numOfPaymentOppositionWithin90Days || 0) +
-    (input.overDraft || 0) +
-    (input.gambling || 0) +
-    (input.marijuana || 0) +
-    (input.bankAccountTimeline || 0) +
-    (input.employmentMatches || 0) +
-    (input.referencesMatch || 0) +
-    (input.addressMatch || 0) +
-    (input.bankruptcy || 0) +
-    (input.incomeSource || 0) +
-    (input.employed || 0) +
-    (input.employmentVerification || 0) +
-    (input.renewal || 0);
+  const [buttonLabel, setButtonLabel] = useState("Calculate");
+  const [isCalculating, setIsCalculating] = useState(false);
 
-  const probabilityOfPayback = (score / NUM_OF_TOTAL_CASES * 100).toFixed(2);
+  const [score, setScore] = useState<number | undefined>();
+  const [probabilityOfPayback, setProbabilityOfPayback] = useState<number | undefined>();
 
   useEffect(() => {
-    const avg = (balAfterPayday1 + balAfterPayday2 + balAfterPayday3 + balAfterPayday4 + balAfterPayday5 + balAfterPayday6) / 6;
+    const avg = (
+      Number(balAfterPayday1) +
+      Number(balAfterPayday2) +
+      Number(balAfterPayday3) +
+      Number(balAfterPayday4) +
+      Number(balAfterPayday5) +
+      Number(balAfterPayday6)
+    ) / 6;
     const newAvgBalance = avg < 200 ? -6
       : avg < 600 ? 1
         : avg < 1000 ? 2
@@ -78,7 +64,18 @@ function App() {
   }, [balAfterPayday1, balAfterPayday2, balAfterPayday3, balAfterPayday4, balAfterPayday5, balAfterPayday6]);
 
   useEffect(() => {
-    const total = (monthlyLoan1 + monthlyLoan2 + monthlyLoan3 + monthlyLoan4 + monthlyLoan5 + monthlyLoan6 + monthlyLoan7 + monthlyLoan8 + monthlyLoan9 + monthlyLoan10) * 2;
+    const total = (
+      Number(monthlyLoan1) +
+      Number(monthlyLoan2) +
+      Number(monthlyLoan3) +
+      Number(monthlyLoan4) +
+      Number(monthlyLoan5) +
+      Number(monthlyLoan6) +
+      Number(monthlyLoan7) +
+      Number(monthlyLoan8) +
+      Number(monthlyLoan9) +
+      Number(monthlyLoan10)
+    ) * 2;
     const newMonthlyLoansAmount = total === 0 ? -1
       : total < 500 ? 2
         : total < 1000 ? 0
@@ -90,6 +87,45 @@ function App() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monthlyLoan1, monthlyLoan2, monthlyLoan3, monthlyLoan4, monthlyLoan5, monthlyLoan6, monthlyLoan7, monthlyLoan8, monthlyLoan9, monthlyLoan10]);
+
+  const handleCalculate = () => {
+    setIsCalculating(true);
+    setButtonLabel("Go Loans AI is calculating loan probability");
+    const _score =
+      (input.avgBalance || 0) +
+      (input.incomeLastedForThreePaydays || 0) +
+      (input.employedMonthlyIncome || 0) +
+      (input.numOfMicroloans === 1 ? -1 : (input.numOfMicroloans || 0)) +
+      (input.monthlyLoansAmount || 0) +
+      (input.newLoansWithin30Days || 0) +
+      (input.numOfNSFWithin30Days || 0) +
+      (input.numOfNSFWithin60Days || 0) +
+      (input.numOfNSFWithin90Days || 0) +
+      (input.numOfPaymentOppositionWithin30Days || 0) +
+      (input.numOfPaymentOppositionWithin60Days || 0) +
+      (input.numOfPaymentOppositionWithin90Days || 0) +
+      (input.overDraft || 0) +
+      (input.gambling || 0) +
+      (input.marijuana || 0) +
+      (input.bankAccountTimeline || 0) +
+      (input.employmentMatches || 0) +
+      (input.referencesMatch || 0) +
+      (input.addressMatch || 0) +
+      (input.bankruptcy || 0) +
+      (input.incomeSource || 0) +
+      (input.employed || 0) +
+      (input.employmentVerification || 0) +
+      (input.renewal || 0);
+
+    const _probabilityOfPayback = +(_score / NUM_OF_TOTAL_CASES * 100).toFixed(2);
+
+    setTimeout(() => {
+      setScore(_score);
+      setProbabilityOfPayback(_probabilityOfPayback);
+      setIsCalculating(false);
+      setButtonLabel("Calculate");
+    }, 2000);
+  }
 
   return (
     <Container maxWidth="lg">
@@ -517,16 +553,26 @@ function App() {
                 { title: "No", value: 0 }
               ]}
           />
+
+          <StyledLoadingButton
+            variant='contained'
+            size='large'
+            onClick={handleCalculate}
+            loading={isCalculating}
+            loadingPosition='start'
+          >
+            <span>{buttonLabel}</span>
+          </StyledLoadingButton>
         </CardContent >
       </Card >
 
-      <Box sx={{ width: 1, height: 1, padding: 4 }} />
+      <Box sx={{ width: 1, height: 1, padding: 3 }} />
 
-      <Card sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
+      <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
         <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
         <CardContent>
-          <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score}`}</Typography>
-          <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback}%`}</Typography>
+          <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography>
+          <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>
         </CardContent>
       </Card>
 
@@ -534,5 +580,25 @@ function App() {
     </Container >
   );
 }
+
+const StyledLoadingButton = styled(LoadingButton)`
+  background-color: #31af20;
+  color: white;
+  margin-top: 32px;
+  width: 500px;
+  align-self: center;
+  border-radius: 30px;
+
+  &:hover {
+    background-color: rgb(56, 142, 60);
+  }
+  .MuiLoadingButton-loadingIndicator {
+    position: initial;
+    margin-right: 12px;
+  }
+  & > span {
+    text-transform: none;
+  }
+`;
 
 export default App;
