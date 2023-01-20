@@ -39,7 +39,7 @@ function App() {
   const [buttonLabel, setButtonLabel] = useState("Calculate");
   const [isCalculating, setIsCalculating] = useState(false);
 
-  const [score, setScore] = useState<number | undefined>();
+  // const [score, setScore] = useState<number | undefined>();
   const [probabilityOfPayback, setProbabilityOfPayback] = useState<number | undefined>();
 
   useEffect(() => {
@@ -120,7 +120,7 @@ function App() {
     const _probabilityOfPayback = +(_score / NUM_OF_TOTAL_CASES * 100).toFixed(2);
 
     setTimeout(() => {
-      setScore(_score);
+      // setScore(_score);
       setProbabilityOfPayback(_probabilityOfPayback);
       setIsCalculating(false);
       setButtonLabel("Calculate");
