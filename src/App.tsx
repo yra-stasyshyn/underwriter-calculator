@@ -4,12 +4,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
 import { useEffect, useState } from 'react';
 
 import Select from './core/components/select/Select';
 import { InputData } from './core/interfaces/io.type';
 
 import Input from './core/components/input/Input';
+import InputPayday from './core/components/input/InputPayday';
 
 import "./App.css";
 import logoSrc from "./assets/images/logo.png";
@@ -130,59 +132,61 @@ function App() {
   return (
     <Container maxWidth="lg">
       <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
-      <Typography variant='h3' align='center' sx={{ fontWeight: "bold", m: "auto", marginBottom: 6 }}>Underwriter Calculator</Typography>
+      <Typography variant='h4' align='left' sx={{ fontWeight: "bold", m: "auto", marginBottom: 6, marginTop: 4 }}>Underwriter Calculator</Typography>
 
-      <Card sx={{ padding: 4, borderRadius: 16 }}>
-        <Typography variant="h4" color="#31af20" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Financial Information</Typography>
+      <Card sx={{ padding: 4, borderRadius: 0 }}>
+        <Typography variant="h5" color="#31af20" align="left" sx={{ marginBottom: 4, fontWeight: "bold" }}>APPLICATION FINANCIAL INFORMATION</Typography>
         <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {/* Input 1 */}
+          <Typography variant="h6" color="#000" align="left" sx={{ }}>Balance after payday</Typography>
           <Grid container spacing={2}>
+          
             <Grid item xs={6}>
-              <Input
-                label="Bal after 1 payday:"
+              <InputPayday
+                label="Payday 1"
                 value={balAfterPayday1}
                 setValue={e => setBalAfterPayday1(+e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
-              <Input
-                label="Bal after 2 payday:"
+              <InputPayday
+                label="Payday 2"
                 value={balAfterPayday2}
                 setValue={e => setBalAfterPayday2(+e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
-              <Input
-                label="Bal after 3 payday:"
+              <InputPayday
+                label="Payday 3"
                 value={balAfterPayday3}
                 setValue={e => setBalAfterPayday3(+e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
-              <Input
-                label="Bal after 4 payday:"
+              <InputPayday
+                label="Payday 4"
                 value={balAfterPayday4}
                 setValue={e => setBalAfterPayday4(+e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
-              <Input
-                label="Bal after 5 payday:"
+              <InputPayday
+                label="Payday 5"
                 value={balAfterPayday5}
                 setValue={e => setBalAfterPayday5(+e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
-              <Input
-                label="Bal after 6 payday:"
+              <InputPayday
+                label="Payday 6"
                 value={balAfterPayday6}
                 setValue={e => setBalAfterPayday6(+e.target.value)}
               />
             </Grid>
           </Grid>
 
+          <Typography variant="h6" color="#000" align="left" sx={{ }}>Avg. Balance</Typography>
           <Select
-            label='AVG balance: '
             value={input.avgBalance || -6}
             options={[
               { title: "<200", value: -6 },
@@ -569,7 +573,7 @@ function App() {
       <Box sx={{ width: 1, height: 1, padding: 3 }} />
 
       <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
-        <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
+        <Typography variant="h4" align="left" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
         <CardContent>
           {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
           <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>

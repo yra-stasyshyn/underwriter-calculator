@@ -3,7 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MUISelect, { SelectChangeEvent } from '@mui/material/Select';
 
 interface Props {
-  label: string;
+  label?: string;
   value: number | undefined;
   setValue?: (val: number) => void;
   options: Array<{
@@ -20,7 +20,7 @@ const Select = (props: Props) => {
   const handleChange = (e: SelectChangeEvent) => setValue && setValue(+e.target.value);
 
   return (
-    <FormControl variant="standard" sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 2, minWidth: 200 }} size="small">
+    <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "row", alignItems: "left", gap: 2, minWidth: 200 }} size="small">
       <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
       <MUISelect
         value={strValue}

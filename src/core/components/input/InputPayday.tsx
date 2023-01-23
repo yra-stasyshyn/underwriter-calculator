@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 import InputAdornment from '@mui/material/InputAdornment';
 
 interface Props {
-  label?: string;
+  label: string;
   value?: number;
   setValue: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
@@ -14,6 +14,9 @@ const Input = (props: Props) => {
     <Stack direction="row" alignItems="center" spacing={2}>
       <TextField
         fullWidth
+        InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
         type="number"
         variant="outlined"
         placeholder={label}
