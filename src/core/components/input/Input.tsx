@@ -1,6 +1,5 @@
 import { Stack, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
-import InputAdornment from '@mui/material/InputAdornment';
 
 interface Props {
   label?: string;

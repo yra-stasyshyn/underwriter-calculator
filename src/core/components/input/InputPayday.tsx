@@ -7,7 +7,7 @@ interface Props {
   value?: number;
   setValue: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
-const Input = (props: Props) => {
+const InputPayday = (props: Props) => {
   const { label, value, setValue } = props;
 
   return (
@@ -28,4 +28,4 @@ const Input = (props: Props) => {
   )
 }
 
-export default Input;
+export default InputPayday;

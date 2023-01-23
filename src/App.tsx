@@ -4,10 +4,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
 import { useEffect, useState } from 'react';
 
 import Select from './core/components/select/Select';
+import SelectBalance from './core/components/select/SelectBalance';
 import { InputData } from './core/interfaces/io.type';
 
 import Input from './core/components/input/Input';
@@ -185,8 +185,8 @@ function App() {
             </Grid>
           </Grid>
 
-          <Typography variant="h6" color="#000" align="left" sx={{ }}>Avg. Balance</Typography>
-          <Select
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>Avg. Balance</Typography>
+          <SelectBalance
             value={input.avgBalance || -6}
             options={[
               { title: "<200", value: -6 },

@@ -12,7 +12,7 @@ interface Props {
   }>;
   disabled?: boolean;
 }
-const Select = (props: Props) => {
+const SelectBalance = (props: Props) => {
   const { label, value, setValue, options, disabled } = props;
 
   const strValue = typeof value === "undefined" ? "" : value.toString();
@@ -20,7 +20,7 @@ const Select = (props: Props) => {
   const handleChange = (e: SelectChangeEvent) => setValue && setValue(+e.target.value);
 
   return (
-    <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "left", gap: 2, minWidth: 200 }} size="small">
+    <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "left", minWidth: 200, width: "50%"}} size="medium">
       <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
       <MUISelect
         value={strValue}
@@ -37,4 +37,4 @@ const Select = (props: Props) => {
   );
 }
 
-export default Select;
+export default SelectBalance;
