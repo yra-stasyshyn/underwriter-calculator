@@ -10,6 +10,7 @@ import Select from './core/components/select/Select';
 import StyledToggleButtonGroup from './core/components/select/StyledToggleButtonGroup';
 import { InputData } from './core/interfaces/io.type';
 
+import Input from './core/components/input/Input';
 import InputPayday from './core/components/input/InputPayday';
 
 import "./App.css";
