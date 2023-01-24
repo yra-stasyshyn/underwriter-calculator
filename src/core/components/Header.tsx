@@ -1,18 +1,20 @@
-import CallIcon from '@mui/icons-material/Call';
 import { Stack, Typography } from "@mui/material";
 import { Box } from '@mui/system';
 
 import logoSrc from "../../assets/images/logo.png";
+import phoneSrc from "../../assets/images/phone.svg";
 
 const Header = () => (
-  <Box sx={{ position: "relative" }}>
-    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ zIndex: 2 }}>
-      <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
-      <Stack direction="row" alignItems="center">
-        <CallIcon sx={{ right: 0 }} />
-        <Stack direction="column" alignItems="flex-start">
-          <Typography variant='h6' align='right' sx={{}}>Contact Us</Typography>
-          <Typography variant='h5' align='right' sx={{}}>1-866-478-4119</Typography>
+  <Box sx={{ backgroundColor: "#ccc", padding: "10px 135px", marginBottom: "20px" }}>
+    <Stack direction="row" justifyContent="space-between" alignItems="center">
+      <a href="/">
+        <img src={logoSrc} style={{ cursor: "pointer" }} alt="logo" />
+      </a>
+      <Stack direction="row" alignItems="center" sx={{ gap: "8px" }}>
+        <img src={phoneSrc} width={40} />
+        <Stack direction="column">
+          <Typography variant="body2">Contact Us</Typography>
+          <Typography variant='h5' fontFamily="BlinkMacSystemFont" fontWeight="bold">1-866-478-4119</Typography>
         </Stack>
       </Stack>
     </Stack>

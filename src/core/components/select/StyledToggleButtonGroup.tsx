@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
 import MUIToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import SectionTitle from '../typography/SectionTitle';
@@ -27,7 +27,7 @@ export default function StyledToggleButtonGroup(props: Props) {
   };
 
   return (
-    <>
+    <Box>
       <SectionTitle>{label}</SectionTitle>
       <StyledMUIToggleButtonGroup
         color="success"
@@ -47,7 +47,7 @@ export default function StyledToggleButtonGroup(props: Props) {
           </StyledToggleButton>
         ))}
       </StyledMUIToggleButtonGroup >
-    </>
+    </Box>
   );
 }
 

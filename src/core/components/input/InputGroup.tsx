@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 import SectionTitle from '../typography/SectionTitle';
@@ -13,9 +14,9 @@ const InputGroup = (props: Props) => {
   const { label, subject, values, onChange } = props;
 
   return (
-    <>
+    <Box>
       <SectionTitle>{label}</SectionTitle>
-      <Grid container spacing={2}>
+      <Grid container rowSpacing="8px" columnSpacing="16px">
         {values.map((val, idx) => (
           <Grid item xs={6} key={idx}>
             <InputPayday
@@ -27,7 +28,7 @@ const InputGroup = (props: Props) => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </Box>
 
   )
 }

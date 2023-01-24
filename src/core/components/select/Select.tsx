@@ -21,13 +21,16 @@ const Select = (props: Props) => {
   const handleChange = (e: SelectChangeEvent) => setValue && setValue(+e.target.value);
 
   return (
-    <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "left", gap: 2, minWidth: 200 }} size="medium">
+    <FormControl variant="outlined" size="medium" fullWidth>
       <SectionTitle>{label}</SectionTitle>
       <MUISelect
         value={strValue}
         onChange={handleChange}
         displayEmpty
         disabled={!!disabled}
+        MenuProps={{
+          disableScrollLock: true,
+        }}
       >
         {!disabled && <MenuItem disabled hidden value="">{` Select `}</MenuItem>}
         {options.map((option, idx) => (
