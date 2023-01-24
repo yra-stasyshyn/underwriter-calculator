@@ -1,6 +1,7 @@
 import { FormControl, Typography } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import MUISelect, { SelectChangeEvent } from '@mui/material/Select';
+import SectionTitle from "../typography/SectionTitle";
 
 interface Props {
   label?: string;
@@ -21,7 +22,7 @@ const Select = (props: Props) => {
 
   return (
     <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "left", gap: 2, minWidth: 200 }} size="medium">
-      <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
+      <SectionTitle>{label}</SectionTitle>
       <MUISelect
         value={strValue}
         onChange={handleChange}

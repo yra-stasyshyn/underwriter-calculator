@@ -1,4 +1,4 @@
-import { Stack, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { ChangeEvent } from "react";
 import InputAdornment from '@mui/material/InputAdornment';
 
@@ -21,28 +21,31 @@ const ValidationTextField = styled(TextField)({
 interface Props {
   label: string;
   value?: number;
-  setValue: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  index: number;
+  onChange: (index: number, newVal: number) => void
 }
 const InputPayday = (props: Props) => {
-  const { label, value, setValue } = props;
+  const { label, value, index, onChange } = props;
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    onChange(index, +e.target.value);
+  }
 
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <ValidationTextField
-        fullWidth
-        InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-        type="number"
-        variant="outlined"
-        placeholder={label}
-        size="medium"
-        value={value}
-        color="success"
-        onChange={setValue}
-        sx={{fontWeight: 'bold'}}
-      />
-    </Stack>
+    <ValidationTextField
+      fullWidth
+      InputProps={{
+        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+      }}
+      type="number"
+      variant="outlined"
+      placeholder={label}
+      size="medium"
+      value={value}
+      color="success"
+      onChange={handleChange}
+      sx={{ fontWeight: 'bold' }}
+    />
   )
 }
 
