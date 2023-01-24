@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
 import MUIToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import SectionTitle from '../typography/SectionTitle';
 
 interface Props {
   label?: string;
@@ -12,7 +13,7 @@ interface Props {
     value: number;
   }>;
   gridAutoFlow?: "row" | "column";
-  gridTemplate?: string; // 1 ~ 12
+  gridTemplate?: string;
   disabled?: boolean;
 }
 export default function StyledToggleButtonGroup(props: Props) {
@@ -26,24 +27,34 @@ export default function StyledToggleButtonGroup(props: Props) {
   };
 
   return (
-    <StyledMUIToggleButtonGroup
-      color="success"
-      value={value}
-      exclusive
-      onChange={handleChange}
-      aria-label={label}
-      sx={{ gridAutoFlow, gridTemplate }}
-    >
-      {options.map((option, idx) => (
-        <StyledToggleButton key={`${option.title}-${idx}`} value={option.value}>{option.title}</StyledToggleButton>
-      ))}
-    </StyledMUIToggleButtonGroup >
+    <>
+      <SectionTitle>{label}</SectionTitle>
+      <StyledMUIToggleButtonGroup
+        color="success"
+        value={value}
+        exclusive
+        onChange={handleChange}
+        aria-label={label}
+        sx={{ gridAutoFlow, gridTemplate }}
+      >
+        {options.map((option, idx) => (
+          <StyledToggleButton
+            key={`${option.title}-${idx}`}
+            value={option.value}
+            sx={{ textTransform: "none" }}
+          >
+            {option.title}
+          </StyledToggleButton>
+        ))}
+      </StyledMUIToggleButtonGroup >
+    </>
   );
 }
 
 const StyledMUIToggleButtonGroup = styled(MUIToggleButtonGroup)`
   display: grid;
-  gap: 8px;
+  grid-row-gap: 8px;
+  grid-column-gap: 16px;
 `;
 const StyledToggleButton = styled(ToggleButton)`
   border-radius: 4px !important;
