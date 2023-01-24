@@ -516,6 +516,16 @@ function App() {
                   ]}
               />
 
+            </CardContent >
+          </Card >
+          <Box sx={{ width: 1, height: 1, padding: 3 }} />
+        </Grid>
+
+        <Grid item xs={4}>
+          <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#fff", color: "#000" }}>
+            <CardContent>
+              <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
+              {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
               <StyledLoadingButton
                 variant='contained'
                 size='large'
@@ -524,17 +534,7 @@ function App() {
               >
                 <span>{buttonLabel}</span>
               </StyledLoadingButton>
-            </CardContent >
-          </Card >
-          <Box sx={{ width: 1, height: 1, padding: 3 }} />
-        </Grid>
-
-        <Grid item xs={4}>
-          <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
-            <CardContent>
-              <Typography variant="h4" align="left" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
-              {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
-              <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>
+              <Typography variant='h5' sx={{ fontWeight: "bold", marginTop: 2 }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>
             </CardContent>
           </Card>
           <Box sx={{ width: 1, height: 1, padding: 6 }} />
@@ -550,8 +550,7 @@ const CardTitle = ({ children }: any) => (
 const StyledLoadingButton = styled(LoadingButton)`
   background-color: #31af20;
   color: white;
-  margin-top: 32px;
-  width: 500px;
+  width: 250px;
   align-self: center;
   border-radius: 30px;
 
