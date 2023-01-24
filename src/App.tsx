@@ -133,81 +133,83 @@ function App() {
       <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
       <Typography variant='h3' align='center' sx={{ fontWeight: "bold", m: "auto", marginBottom: 6 }}>Underwriter Calculator</Typography>
 
-      <Card sx={{ padding: 4, borderRadius: 16 }}>
-        <Typography variant="h4" color="#31af20" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Financial Information</Typography>
-        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {/* Input 1 */}
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Input
-                label="Bal after 1 payday:"
-                value={balAfterPayday1}
-                setValue={e => setBalAfterPayday1(+e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Bal after 2 payday:"
-                value={balAfterPayday2}
-                setValue={e => setBalAfterPayday2(+e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Bal after 3 payday:"
-                value={balAfterPayday3}
-                setValue={e => setBalAfterPayday3(+e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Bal after 4 payday:"
-                value={balAfterPayday4}
-                setValue={e => setBalAfterPayday4(+e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Bal after 5 payday:"
-                value={balAfterPayday5}
-                setValue={e => setBalAfterPayday5(+e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Bal after 6 payday:"
-                value={balAfterPayday6}
-                setValue={e => setBalAfterPayday6(+e.target.value)}
-              />
-            </Grid>
-          </Grid>
+      <Grid container spacing={4} sx={{ position: "relative" }}>
+        <Grid item xs={9}>
+          <Card sx={{ padding: 4, borderRadius: 16 }}>
+            <Typography variant="h4" color="#31af20" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Financial Information</Typography>
+            <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {/* Input 1 */}
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Input
+                    label="Bal after 1 payday:"
+                    value={balAfterPayday1}
+                    setValue={e => setBalAfterPayday1(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Bal after 2 payday:"
+                    value={balAfterPayday2}
+                    setValue={e => setBalAfterPayday2(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Bal after 3 payday:"
+                    value={balAfterPayday3}
+                    setValue={e => setBalAfterPayday3(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Bal after 4 payday:"
+                    value={balAfterPayday4}
+                    setValue={e => setBalAfterPayday4(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Bal after 5 payday:"
+                    value={balAfterPayday5}
+                    setValue={e => setBalAfterPayday5(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Bal after 6 payday:"
+                    value={balAfterPayday6}
+                    setValue={e => setBalAfterPayday6(+e.target.value)}
+                  />
+                </Grid>
+              </Grid>
 
-          <Select
-            label='AVG balance: '
-            value={input.avgBalance || -6}
-            options={[
-              { title: "<200", value: -6 },
-              { title: "200-600", value: 1 },
-              { title: "600-1000", value: 2 },
-              { title: "1000-1500", value: 3 },
-              { title: "1500+", value: 6 },
-            ]}
-            disabled={true}
-          />
+              <Select
+                label='AVG balance: '
+                value={input.avgBalance || -6}
+                options={[
+                  { title: "<200", value: -6 },
+                  { title: "200-600", value: 1 },
+                  { title: "600-1000", value: 2 },
+                  { title: "1000-1500", value: 3 },
+                  { title: "1500+", value: 6 },
+                ]}
+                disabled={true}
+              />
 
-          {/* Input 2 */}
-          <ToggleButtonGroup
-            label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
-            value={input.incomeLastedForThreePaydays}
-            setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
-            options={[
-              { title: "Yes", value: 3 },
-              { title: "No", value: -3 }
-            ]}
-            gridAutoFlow="column"
-            gridTemplate="auto auto / auto auto"
-          />
-          {/* <Select
+              {/* Input 2 */}
+              <ToggleButtonGroup
+                label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
+                value={input.incomeLastedForThreePaydays}
+                setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
+                options={[
+                  { title: "Yes", value: 3 },
+                  { title: "No", value: -3 }
+                ]}
+                gridAutoFlow="column"
+                gridTemplate="auto auto / auto auto"
+              />
+              {/* <Select
             label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
             value={input.incomeLastedForThreePaydays}
             setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
@@ -217,376 +219,383 @@ function App() {
             ]}
           /> */}
 
-          {/* Input 3 */}
-          <Select
-            label='Employed monthly income: '
-            value={input.employedMonthlyIncome}
-            setValue={val => setInput({ ...input, employedMonthlyIncome: val })}
-            options={[
-              { title: "1500-2000", value: -4 },
-              { title: "2000-2500", value: -1 },
-              { title: "2500-4000", value: 2 },
-              { title: "4000+", value: 4 },
-            ]}
-          />
-
-          {/* Input 4 */}
-          <Select
-            label='Number of Microloans: '
-            value={input.numOfMicroloans}
-            setValue={val => setInput({ ...input, numOfMicroloans: val })}
-            options={[
-              { title: "0", value: -1 },
-              { title: "1-2", value: 2 },
-              { title: "3-4", value: 1 }, // designed value is -1, but let's use 1 since -1 conflicts.
-              { title: "5-6", value: -2 },
-              { title: "7+", value: -3 }
-            ]}
-          />
-
-          {/* Input 5 */}
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 1:"
-                value={monthlyLoan1}
-                setValue={e => setMonthlyLoan1(+e.target.value)}
+              {/* Input 3 */}
+              <Select
+                label='Employed monthly income: '
+                value={input.employedMonthlyIncome}
+                setValue={val => setInput({ ...input, employedMonthlyIncome: val })}
+                options={[
+                  { title: "1500-2000", value: -4 },
+                  { title: "2000-2500", value: -1 },
+                  { title: "2500-4000", value: 2 },
+                  { title: "4000+", value: 4 },
+                ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 2:"
-                value={monthlyLoan2}
-                setValue={e => setMonthlyLoan2(+e.target.value)}
+
+              {/* Input 4 */}
+              <Select
+                label='Number of Microloans: '
+                value={input.numOfMicroloans}
+                setValue={val => setInput({ ...input, numOfMicroloans: val })}
+                options={[
+                  { title: "0", value: -1 },
+                  { title: "1-2", value: 2 },
+                  { title: "3-4", value: 1 }, // designed value is -1, but let's use 1 since -1 conflicts.
+                  { title: "5-6", value: -2 },
+                  { title: "7+", value: -3 }
+                ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 3:"
-                value={monthlyLoan3}
-                setValue={e => setMonthlyLoan3(+e.target.value)}
+
+              {/* Input 5 */}
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 1:"
+                    value={monthlyLoan1}
+                    setValue={e => setMonthlyLoan1(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 2:"
+                    value={monthlyLoan2}
+                    setValue={e => setMonthlyLoan2(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 3:"
+                    value={monthlyLoan3}
+                    setValue={e => setMonthlyLoan3(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 4:"
+                    value={monthlyLoan4}
+                    setValue={e => setMonthlyLoan4(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 5:"
+                    value={monthlyLoan5}
+                    setValue={e => setMonthlyLoan5(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 6:"
+                    value={monthlyLoan6}
+                    setValue={e => setMonthlyLoan6(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 7:"
+                    value={monthlyLoan7}
+                    setValue={e => setMonthlyLoan7(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 8:"
+                    value={monthlyLoan8}
+                    setValue={e => setMonthlyLoan8(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 9:"
+                    value={monthlyLoan9}
+                    setValue={e => setMonthlyLoan9(+e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Input
+                    label="Monthly loan 10:"
+                    value={monthlyLoan10}
+                    setValue={e => setMonthlyLoan10(+e.target.value)}
+                  />
+                </Grid>
+              </Grid>
+
+
+              <Select
+                label='Monthly loans amount: '
+                value={input.monthlyLoansAmount}
+                options={[
+                  { title: "0", value: -1 },
+                  { title: "1-500", value: 2 },
+                  { title: "500-1000", value: 0 },
+                  { title: "1000-1500", value: -2 },
+                  { title: "1500-2000", value: -6 }
+                ]}
+                disabled={true}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 4:"
-                value={monthlyLoan4}
-                setValue={e => setMonthlyLoan4(+e.target.value)}
+
+              {/* Input 6 */}
+              <Select
+                label='New loans within 30 days: '
+                value={input.newLoansWithin30Days}
+                setValue={val => setInput({ ...input, newLoansWithin30Days: val })}
+                options={[
+                  { title: "0", value: 1 },
+                  { title: "1-2", value: -2 },
+                  { title: "2-3", value: -3 }
+                ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 5:"
-                value={monthlyLoan5}
-                setValue={e => setMonthlyLoan5(+e.target.value)}
+
+              {/* Input 7 */}
+              <Select
+                label='# of NSF within 30 days: '
+                value={input.numOfNSFWithin30Days}
+                setValue={val => setInput({ ...input, numOfNSFWithin30Days: val })}
+                options={[
+                  { title: "Less than 1", value: 1 },
+                  { title: "2+", value: -3 }
+                ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 6:"
-                value={monthlyLoan6}
-                setValue={e => setMonthlyLoan6(+e.target.value)}
+
+              {/* Input 8 */}
+              < Select
+                label='# of NSF within 60 days: '
+                value={input.numOfNSFWithin60Days}
+                setValue={val => setInput({ ...input, numOfNSFWithin60Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -2 }
+                  ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 7:"
-                value={monthlyLoan7}
-                setValue={e => setMonthlyLoan7(+e.target.value)}
+
+              {/* Input 9 */}
+              < Select
+                label='# of NSF within 90 days: '
+                value={input.numOfNSFWithin90Days}
+                setValue={val => setInput({ ...input, numOfNSFWithin90Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -1 }
+                  ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 8:"
-                value={monthlyLoan8}
-                setValue={e => setMonthlyLoan8(+e.target.value)}
+
+              {/* Input 10 */}
+              < Select
+                label='# of Payment opposition within 30 days: '
+                value={input.numOfPaymentOppositionWithin30Days}
+                setValue={val => setInput({ ...input, numOfPaymentOppositionWithin30Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -3 }
+                  ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 9:"
-                value={monthlyLoan9}
-                setValue={e => setMonthlyLoan9(+e.target.value)}
+
+              {/* Input 11 */}
+              < Select
+                label='# of Payment opposition within 60 days: '
+                value={input.numOfPaymentOppositionWithin60Days}
+                setValue={val => setInput({ ...input, numOfPaymentOppositionWithin60Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -2 }
+                  ]}
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                label="Monthly loan 10:"
-                value={monthlyLoan10}
-                setValue={e => setMonthlyLoan10(+e.target.value)}
+
+              {/* Input 12 */}
+              < Select
+                label='# of Payment opposition within 90 days: '
+                value={input.numOfPaymentOppositionWithin90Days}
+                setValue={val => setInput({ ...input, numOfPaymentOppositionWithin90Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -1 }
+                  ]}
               />
-            </Grid>
-          </Grid>
 
+              {/* Input 13 */}
+              < Select
+                label='Overdraft: '
+                value={input.overDraft}
+                setValue={val => setInput({ ...input, overDraft: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
 
-          <Select
-            label='Monthly loans amount: '
-            value={input.monthlyLoansAmount}
-            options={[
-              { title: "0", value: -1 },
-              { title: "1-500", value: 2 },
-              { title: "500-1000", value: 0 },
-              { title: "1000-1500", value: -2 },
-              { title: "1500-2000", value: -6 }
-            ]}
-            disabled={true}
-          />
+              {/* Input 14 */}
+              < Select
+                label='Gambling: '
+                value={input.gambling}
+                setValue={val => setInput({ ...input, gambling: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
 
-          {/* Input 6 */}
-          <Select
-            label='New loans within 30 days: '
-            value={input.newLoansWithin30Days}
-            setValue={val => setInput({ ...input, newLoansWithin30Days: val })}
-            options={[
-              { title: "0", value: 1 },
-              { title: "1-2", value: -2 },
-              { title: "2-3", value: -3 }
-            ]}
-          />
+              {/* Input 15 */}
+              < Select
+                label='Marijuana: '
+                value={input.marijuana}
+                setValue={val => setInput({ ...input, marijuana: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
 
-          {/* Input 7 */}
-          <Select
-            label='# of NSF within 30 days: '
-            value={input.numOfNSFWithin30Days}
-            setValue={val => setInput({ ...input, numOfNSFWithin30Days: val })}
-            options={[
-              { title: "Less than 1", value: 1 },
-              { title: "2+", value: -3 }
-            ]}
-          />
+              {/* Input 16 */}
+              < Select
+                label='Bank account time line: '
+                value={input.bankAccountTimeline}
+                setValue={val => setInput({ ...input, bankAccountTimeline: val })}
+                options={
+                  [
+                    { title: ">1 month", value: -3 },
+                    { title: "2+ months", value: -2 },
+                    { title: "3+ months", value: 1 }
+                  ]}
+              />
 
-          {/* Input 8 */}
-          < Select
-            label='# of NSF within 60 days: '
-            value={input.numOfNSFWithin60Days}
-            setValue={val => setInput({ ...input, numOfNSFWithin60Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -2 }
-              ]}
-          />
+              {/* Input 17 */}
+              < Select
+                label='Employment matches: '
+                value={input.employmentMatches}
+                setValue={val => setInput({ ...input, employmentMatches: val })}
+                options={
+                  [
+                    { title: "Yes", value: 1 },
+                    { title: "No", value: -1 }
+                  ]}
+              />
 
-          {/* Input 9 */}
-          < Select
-            label='# of NSF within 90 days: '
-            value={input.numOfNSFWithin90Days}
-            setValue={val => setInput({ ...input, numOfNSFWithin90Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -1 }
-              ]}
-          />
+              {/* Input 18 */}
+              < Select
+                label='Reference match: '
+                value={input.referencesMatch}
+                setValue={val => setInput({ ...input, referencesMatch: val })}
+                options={
+                  [
+                    { title: "Yes", value: 1 },
+                    { title: "No", value: -1 }
+                  ]}
+              />
 
-          {/* Input 10 */}
-          < Select
-            label='# of Payment opposition within 30 days: '
-            value={input.numOfPaymentOppositionWithin30Days}
-            setValue={val => setInput({ ...input, numOfPaymentOppositionWithin30Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -3 }
-              ]}
-          />
+              {/* Input 19 */}
+              < Select
+                label='Address match: '
+                value={input.addressMatch}
+                setValue={val => setInput({ ...input, addressMatch: val })}
+                options={
+                  [
+                    { title: "Yes", value: 1 },
+                    { title: "No", value: -1 }
+                  ]}
+              />
 
-          {/* Input 11 */}
-          < Select
-            label='# of Payment opposition within 60 days: '
-            value={input.numOfPaymentOppositionWithin60Days}
-            setValue={val => setInput({ ...input, numOfPaymentOppositionWithin60Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -2 }
-              ]}
-          />
+              {/* Input 20 */}
+              < Select
+                label='Bankruptcy/conprop? (<6 mos): '
+                value={input.bankruptcy}
+                setValue={val => setInput({ ...input, bankruptcy: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
 
-          {/* Input 12 */}
-          < Select
-            label='# of Payment opposition within 90 days: '
-            value={input.numOfPaymentOppositionWithin90Days}
-            setValue={val => setInput({ ...input, numOfPaymentOppositionWithin90Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -1 }
-              ]}
-          />
+              {/* Input 21 */}
+              < Select
+                label='Income source: '
+                value={input.incomeSource}
+                setValue={val => setInput({ ...input, incomeSource: val })}
+                options={
+                  [
+                    { title: "Employed", value: 2 },
+                    { title: "PEnsion", value: 1 },
+                    { title: "Employment insurance", value: 0 },
+                    { title: "Not Employed", value: -1 }
+                  ]}
+              />
 
-          {/* Input 13 */}
-          < Select
-            label='Overdraft: '
-            value={input.overDraft}
-            setValue={val => setInput({ ...input, overDraft: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
+              {/* Input 22 */}
+              < Select
+                label='Employed: '
+                value={input.employed}
+                setValue={val => setInput({ ...input, employed: val })}
+                options={
+                  [
+                    { title: "Less than month", value: -3 },
+                    { title: "1-2 months", value: -2 },
+                    { title: "3-5 months", value: 1 },
+                    { title: "6 months +", value: 2 }
+                  ]}
+              />
 
-          {/* Input 14 */}
-          < Select
-            label='Gambling: '
-            value={input.gambling}
-            setValue={val => setInput({ ...input, gambling: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
+              {/* Input 23 */}
+              < Select
+                label='Employment Verification: '
+                value={input.employmentVerification}
+                setValue={val => setInput({ ...input, employmentVerification: val })}
+                options={
+                  [
+                    { title: "Good Standings", value: 1 },
+                    { title: "Poor standings", value: -1 }
+                  ]}
+              />
 
-          {/* Input 15 */}
-          < Select
-            label='Marijuana: '
-            value={input.marijuana}
-            setValue={val => setInput({ ...input, marijuana: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
+              {/* Input 24 */}
+              < Select
+                label='Renewal? '
+                value={input.renewal}
+                setValue={val => setInput({ ...input, renewal: val })}
+                options={
+                  [
+                    { title: "2nd loan", value: 1 },
+                    { title: "3rd loan", value: 3 },
+                    { title: "4th+", value: 6 },
+                    { title: "No", value: 0 }
+                  ]}
+              />
 
-          {/* Input 16 */}
-          < Select
-            label='Bank account time line: '
-            value={input.bankAccountTimeline}
-            setValue={val => setInput({ ...input, bankAccountTimeline: val })}
-            options={
-              [
-                { title: ">1 month", value: -3 },
-                { title: "2+ months", value: -2 },
-                { title: "3+ months", value: 1 }
-              ]}
-          />
+              <StyledLoadingButton
+                variant='contained'
+                size='large'
+                onClick={handleCalculate}
+                loading={isCalculating}
+                loadingPosition='start'
+              >
+                <span>{buttonLabel}</span>
+              </StyledLoadingButton>
+            </CardContent >
+          </Card >
 
-          {/* Input 17 */}
-          < Select
-            label='Employment matches: '
-            value={input.employmentMatches}
-            setValue={val => setInput({ ...input, employmentMatches: val })}
-            options={
-              [
-                { title: "Yes", value: 1 },
-                { title: "No", value: -1 }
-              ]}
-          />
+          <Box sx={{ width: 1, height: 1, padding: 3 }} />
 
-          {/* Input 18 */}
-          < Select
-            label='Reference match: '
-            value={input.referencesMatch}
-            setValue={val => setInput({ ...input, referencesMatch: val })}
-            options={
-              [
-                { title: "Yes", value: 1 },
-                { title: "No", value: -1 }
-              ]}
-          />
+          <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
+            <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
+            <CardContent>
+              {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
+              <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
 
-          {/* Input 19 */}
-          < Select
-            label='Address match: '
-            value={input.addressMatch}
-            setValue={val => setInput({ ...input, addressMatch: val })}
-            options={
-              [
-                { title: "Yes", value: 1 },
-                { title: "No", value: -1 }
-              ]}
-          />
+        <Grid item xs={3}>
+          <div style={{ width: "100%", height: "200px", backgroundColor: "green", position: "sticky", top: "20px" }}>hello</div>
+        </Grid>
+      </Grid>
 
-          {/* Input 20 */}
-          < Select
-            label='Bankruptcy/conprop? (<6 mos): '
-            value={input.bankruptcy}
-            setValue={val => setInput({ ...input, bankruptcy: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
-
-          {/* Input 21 */}
-          < Select
-            label='Income source: '
-            value={input.incomeSource}
-            setValue={val => setInput({ ...input, incomeSource: val })}
-            options={
-              [
-                { title: "Employed", value: 2 },
-                { title: "PEnsion", value: 1 },
-                { title: "Employment insurance", value: 0 },
-                { title: "Not Employed", value: -1 }
-              ]}
-          />
-
-          {/* Input 22 */}
-          < Select
-            label='Employed: '
-            value={input.employed}
-            setValue={val => setInput({ ...input, employed: val })}
-            options={
-              [
-                { title: "Less than month", value: -3 },
-                { title: "1-2 months", value: -2 },
-                { title: "3-5 months", value: 1 },
-                { title: "6 months +", value: 2 }
-              ]}
-          />
-
-          {/* Input 23 */}
-          < Select
-            label='Employment Verification: '
-            value={input.employmentVerification}
-            setValue={val => setInput({ ...input, employmentVerification: val })}
-            options={
-              [
-                { title: "Good Standings", value: 1 },
-                { title: "Poor standings", value: -1 }
-              ]}
-          />
-
-          {/* Input 24 */}
-          < Select
-            label='Renewal? '
-            value={input.renewal}
-            setValue={val => setInput({ ...input, renewal: val })}
-            options={
-              [
-                { title: "2nd loan", value: 1 },
-                { title: "3rd loan", value: 3 },
-                { title: "4th+", value: 6 },
-                { title: "No", value: 0 }
-              ]}
-          />
-
-          <StyledLoadingButton
-            variant='contained'
-            size='large'
-            onClick={handleCalculate}
-            loading={isCalculating}
-            loadingPosition='start'
-          >
-            <span>{buttonLabel}</span>
-          </StyledLoadingButton>
-        </CardContent >
-      </Card >
-
-      <Box sx={{ width: 1, height: 1, padding: 3 }} />
-
-      <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#31af20", color: "#fff" }}>
-        <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
-        <CardContent>
-          {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
-          <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>
-        </CardContent>
-      </Card>
 
       <Box sx={{ width: 1, height: 1, padding: 6 }} />
     </Container >
