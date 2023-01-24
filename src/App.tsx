@@ -4,16 +4,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useEffect, useMemo, useState } from 'react';
-
 import Select from './core/components/select/Select';
 import StyledToggleButtonGroup from './core/components/select/StyledToggleButtonGroup';
 import { InputData } from './core/interfaces/io.type';
-
 import InputGroup from './core/components/input/InputGroup';
+import Header from './core/components/typography/Header';
+
+import { useEffect, useMemo, useState } from 'react';
 
 import "./App.css";
-import logoSrc from "./assets/images/logo.png";
 import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
 import SectionTitle from './core/components/typography/SectionTitle';
 
@@ -23,7 +22,7 @@ function App() {
   const [balAfterPaydays, setBalAfterPaydays] = useState<Array<number | undefined>>(Array.from({ length: 6 }, (_v) => undefined));
   const [monthlyLoans, setMonthlyLoans] = useState<Array<number | undefined>>(Array.from({ length: 10 }, (_v) => undefined));
 
-  const [buttonLabel, setButtonLabel] = useState("Calculate");
+  const [buttonLabel, setButtonLabel] = useState("CALCULATE");
   const [isCalculating, setIsCalculating] = useState(false);
 
   // const [score, setScore] = useState<number | undefined>();
@@ -117,15 +116,13 @@ function App() {
       // setScore(_score);
       setProbabilityOfPayback(_probabilityOfPayback);
       setIsCalculating(false);
-      setButtonLabel("Calculate");
+      setButtonLabel("CALCULATE");
     }, 2000);
   }
 
   return (
     <Container maxWidth="lg">
-      <img src={logoSrc} style={{ paddingTop: 1, paddingBottom: 2 }} alt="logo" />
-      <Typography variant='h4' align='left' sx={{ fontWeight: "bold", m: "auto", marginBottom: 6, marginTop: 4 }}>Underwriter Calculator</Typography>
-
+      <Header />
       <Grid container spacing={4}>
         <Grid item xs={8}>
           <Card sx={{ padding: 4, borderRadius: 0 }}>
@@ -330,6 +327,9 @@ function App() {
                 </Grid>
                 <Grid item xs={6}></Grid>
               </Grid>
+            </CardContent >
+            <Card sx={{ marginTop: 5, padding: 4, borderRadius: 0 }}>
+              {/* // Here */}
 
               <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -516,13 +516,13 @@ function App() {
                   ]}
               />
 
-            </CardContent >
+            </Card >
           </Card >
           <Box sx={{ width: 1, height: 1, padding: 3 }} />
         </Grid>
 
         <Grid item xs={4}>
-          <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#fff", color: "#000" }}>
+          <StickyCard elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#fff", color: "#000"}}>
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
               {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
@@ -534,9 +534,10 @@ function App() {
               >
                 <span>{buttonLabel}</span>
               </StyledLoadingButton>
-              <Typography variant='h5' sx={{ fontWeight: "bold", marginTop: 2 }}>{`Probability of Payback: ${probabilityOfPayback || 0}%`}</Typography>
+              <Typography variant='h5' align='center' sx={{ fontWeight: "bold", marginTop: 4 }}>{`Probability of Payback:`}</Typography>
+              <Typography variant='h4' align='center' sx={{ fontWeight: "bold" }}>{`${probabilityOfPayback || 0}%`}</Typography>
             </CardContent>
-          </Card>
+          </StickyCard>
           <Box sx={{ width: 1, height: 1, padding: 6 }} />
         </Grid>
       </Grid>
@@ -551,8 +552,9 @@ const StyledLoadingButton = styled(LoadingButton)`
   background-color: #31af20;
   color: white;
   width: 250px;
+  font-weight: bold;
   align-self: center;
-  border-radius: 30px;
+  border-radius: 15px;
 
   &:hover {
     background-color: rgb(56, 142, 60);
@@ -565,5 +567,10 @@ const StyledLoadingButton = styled(LoadingButton)`
     text-transform: none;
   }
 `;
+const StickyCard = styled(Card)({
+  position: "sticky",
+  top: 50,
+  zIndex: 1
+});
 
 export default App;
