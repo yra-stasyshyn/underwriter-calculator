@@ -4,17 +4,17 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { useEffect, useMemo, useState } from 'react';
+
+import Header from './core/components/Header';
+import InputGroup from './core/components/input/InputGroup';
 import Select from './core/components/select/Select';
 import StyledToggleButtonGroup from './core/components/select/StyledToggleButtonGroup';
+import SectionTitle from './core/components/typography/SectionTitle';
 import { InputData } from './core/interfaces/io.type';
-import InputGroup from './core/components/input/InputGroup';
-import Header from './core/components/typography/Header';
-
-import { useEffect, useMemo, useState } from 'react';
 
 import "./App.css";
 import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
-import SectionTitle from './core/components/typography/SectionTitle';
 
 function App() {
   const [input, setInput] = useState<InputData>({});
@@ -522,7 +522,7 @@ function App() {
         </Grid>
 
         <Grid item xs={4}>
-          <StickyCard elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#fff", color: "#000"}}>
+          <StickyCard elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#fff", color: "#000" }}>
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
               {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
