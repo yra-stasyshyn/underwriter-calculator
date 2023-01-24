@@ -18,6 +18,7 @@ const Input = (props: Props) => {
         placeholder={label}
         size="medium"
         value={value}
+        color="success"
         onChange={setValue}
       />
     </Stack>

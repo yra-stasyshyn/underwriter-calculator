@@ -199,8 +199,8 @@ function App() {
           />
 
           {/* Input 2 */}
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>For the last 3 paydays, has income consistently lasted for at least 3 days? </Typography>
           <Select
-            label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
             value={input.incomeLastedForThreePaydays}
             setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
             options={[
@@ -208,6 +208,11 @@ function App() {
               { title: "No", value: -3 }
             ]}
           />
+        </CardContent>
+      </Card>
+        
+      <Card sx={{ marginTop: 5, padding: 4, borderRadius: 0}}>
+        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 
           {/* Input 3 */}
           <Select

@@ -2,6 +2,22 @@ import { Stack, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
 import InputAdornment from '@mui/material/InputAdornment';
 
+import { styled } from '@mui/material/styles';
+
+const ValidationTextField = styled(TextField)({
+  '& input:valid + fieldset': {
+    borderWidth: 2,
+  },
+  '& input:invalid + fieldset': {
+    borderColor: 'red',
+    borderWidth: 2,
+  },
+  '& input:valid:focus + fieldset': {
+    borderBottomWidth: 6,
+    padding: '4px !important', // override inline-style
+  },
+});
+
 interface Props {
   label: string;
   value?: number;
@@ -12,7 +28,7 @@ const InputPayday = (props: Props) => {
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <TextField
+      <ValidationTextField
         fullWidth
         InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -22,7 +38,9 @@ const InputPayday = (props: Props) => {
         placeholder={label}
         size="medium"
         value={value}
+        color="success"
         onChange={setValue}
+        sx={{fontWeight: 'bold'}}
       />
     </Stack>
   )
