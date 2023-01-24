@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 import Select from './core/components/select/Select';
 import SelectBalance from './core/components/select/SelectBalance';
-import SelectPayday from './core/components/select/SelectPayday';
+import StyledToggleButtonGroup from './core/components/select/StyledToggleButtonGroup';
 import { InputData } from './core/interfaces/io.type';
 
 import Input from './core/components/input/Input';
@@ -201,8 +201,9 @@ function App() {
 
           {/* Input 2 */}
           <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>For the last 3 paydays, has income consistently lasted for at least 3 days? </Typography>
-          <SelectPayday
+          <StyledToggleButtonGroup
             value={input.incomeLastedForThreePaydays}
+            gridAutoFlow='column'
             setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
             options={[
               { title: "Yes", value: 3 },
@@ -213,12 +214,14 @@ function App() {
       </Card>
         
       <Card sx={{ marginTop: 5, padding: 4, borderRadius: 0}}>
+      <Typography variant="h5" color="#31af20" align="left" sx={{ marginBottom: 4, fontWeight: "bold" }}>LOAN AMOUNT INFORMATION</Typography>
         <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-
+          
           {/* Input 3 */}
-          <Select
-            label='Employed monthly income: '
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>Employed Monthly Income : </Typography>
+          <StyledToggleButtonGroup
             value={input.employedMonthlyIncome}
+            gridAutoFlow='column'
             setValue={val => setInput({ ...input, employedMonthlyIncome: val })}
             options={[
               { title: "1500-2000", value: -4 },
@@ -229,10 +232,11 @@ function App() {
           />
 
           {/* Input 4 */}
-          <Select
-            label='Number of Microloans: '
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>Number of Microloans: </Typography>
+          <StyledToggleButtonGroup
             value={input.numOfMicroloans}
             setValue={val => setInput({ ...input, numOfMicroloans: val })}
+            gridAutoFlow='column'
             options={[
               { title: "0", value: -1 },
               { title: "1-2", value: 2 },
@@ -243,6 +247,7 @@ function App() {
           />
 
           {/* Input 5 */}
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>Monthly Loan Amount: </Typography>
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <Input
@@ -316,9 +321,8 @@ function App() {
             </Grid>
           </Grid>
 
-
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>Monthly Loans Amount: </Typography>
           <Select
-            label='Monthly loans amount: '
             value={input.monthlyLoansAmount}
             options={[
               { title: "0", value: -1 },
@@ -329,10 +333,9 @@ function App() {
             ]}
             disabled={true}
           />
-
           {/* Input 6 */}
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>New loans within 30 days: </Typography>
           <Select
-            label='New loans within 30 days: '
             value={input.newLoansWithin30Days}
             setValue={val => setInput({ ...input, newLoansWithin30Days: val })}
             options={[
@@ -342,116 +345,150 @@ function App() {
             ]}
           />
 
-          {/* Input 7 */}
-          <Select
-            label='# of NSF within 30 days: '
-            value={input.numOfNSFWithin30Days}
-            setValue={val => setInput({ ...input, numOfNSFWithin30Days: val })}
-            options={[
-              { title: "Less than 1", value: 1 },
-              { title: "2+", value: -3 }
-            ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 7 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}># of NSF within 30 days: </Typography>
+              <Select
+                value={input.numOfNSFWithin30Days}
+                setValue={val => setInput({ ...input, numOfNSFWithin30Days: val })}
+                options={[
+                  { title: "Less than 1", value: 1 },
+                  { title: "2+", value: -3 }
+                ]}
+              />
+            </Grid>
 
-          {/* Input 8 */}
-          < Select
-            label='# of NSF within 60 days: '
-            value={input.numOfNSFWithin60Days}
-            setValue={val => setInput({ ...input, numOfNSFWithin60Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -2 }
-              ]}
-          />
-
+            <Grid item xs={6}>
+              {/* Input 8 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}># of NSF within 60 days: </Typography>
+              < Select
+                value={input.numOfNSFWithin60Days}
+                setValue={val => setInput({ ...input, numOfNSFWithin60Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -2 }
+                  ]}
+              />
+            </Grid>
+          </Grid>
+          
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+            <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}># of NSF within 90 days: </Typography>
+              < Select
+                value={input.numOfNSFWithin90Days}
+                setValue={val => setInput({ ...input, numOfNSFWithin90Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -1 }
+                  ]}
+              />
+            </Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
           {/* Input 9 */}
-          < Select
-            label='# of NSF within 90 days: '
-            value={input.numOfNSFWithin90Days}
-            setValue={val => setInput({ ...input, numOfNSFWithin90Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -1 }
-              ]}
-          />
 
-          {/* Input 10 */}
-          < Select
-            label='# of Payment opposition within 30 days: '
-            value={input.numOfPaymentOppositionWithin30Days}
-            setValue={val => setInput({ ...input, numOfPaymentOppositionWithin30Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -3 }
-              ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 10 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}># of Payment opposition within 30 days: </Typography>
+              < Select
+                value={input.numOfPaymentOppositionWithin30Days}
+                setValue={val => setInput({ ...input, numOfPaymentOppositionWithin30Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -3 }
+                  ]}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              {/* Input 11 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}># of Payment opposition within 60 days: </Typography>
+              < Select
+              value={input.numOfPaymentOppositionWithin60Days}
+              setValue={val => setInput({ ...input, numOfPaymentOppositionWithin60Days: val })}
+              options={
+                [
+                  { title: "Less than 1", value: 1 },
+                  { title: "2+", value: -2 }
+                ]}
+            />
+            </Grid>
+          </Grid>
+          
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 12 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}># of Payment opposition within 90 days: </Typography>
+              < Select
+                value={input.numOfPaymentOppositionWithin90Days}
+                setValue={val => setInput({ ...input, numOfPaymentOppositionWithin90Days: val })}
+                options={
+                  [
+                    { title: "Less than 1", value: 1 },
+                    { title: "2+", value: -1 }
+                  ]}
+              />
+            </Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
 
-          {/* Input 11 */}
-          < Select
-            label='# of Payment opposition within 60 days: '
-            value={input.numOfPaymentOppositionWithin60Days}
-            setValue={val => setInput({ ...input, numOfPaymentOppositionWithin60Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -2 }
-              ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 13 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2  }}>Overdraft: </Typography>
+              < StyledToggleButtonGroup
+                value={input.overDraft}
+                setValue={val => setInput({ ...input, overDraft: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
+            </Grid>
+            
+            <Grid item xs={6}>
+              {/* Input 14 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2 }}>Gambling: </Typography>
+              < StyledToggleButtonGroup
+                value={input.gambling}
+                setValue={val => setInput({ ...input, gambling: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
+            </Grid>
+          </Grid>
 
-          {/* Input 12 */}
-          < Select
-            label='# of Payment opposition within 90 days: '
-            value={input.numOfPaymentOppositionWithin90Days}
-            setValue={val => setInput({ ...input, numOfPaymentOppositionWithin90Days: val })}
-            options={
-              [
-                { title: "Less than 1", value: 1 },
-                { title: "2+", value: -1 }
-              ]}
-          />
-
-          {/* Input 13 */}
-          < Select
-            label='Overdraft: '
-            value={input.overDraft}
-            setValue={val => setInput({ ...input, overDraft: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
-
-          {/* Input 14 */}
-          < Select
-            label='Gambling: '
-            value={input.gambling}
-            setValue={val => setInput({ ...input, gambling: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
-
-          {/* Input 15 */}
-          < Select
-            label='Marijuana: '
-            value={input.marijuana}
-            setValue={val => setInput({ ...input, marijuana: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 15 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2 }}>Marijuana: </Typography>
+              < StyledToggleButtonGroup
+                value={input.marijuana}
+                setValue={val => setInput({ ...input, marijuana: val })}
+                options={
+                  [
+                    { title: "Yes", value: -1 },
+                    { title: "No", value: 1 }
+                  ]}
+              />
+            </Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
 
           {/* Input 16 */}
-          < Select
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2  }}>Bank account time line: </Typography>
+          < StyledToggleButtonGroup
             label='Bank account time line: '
+            gridAutoFlow='column'
             value={input.bankAccountTimeline}
             setValue={val => setInput({ ...input, bankAccountTimeline: val })}
             options={
@@ -462,57 +499,72 @@ function App() {
               ]}
           />
 
-          {/* Input 17 */}
-          < Select
-            label='Employment matches: '
-            value={input.employmentMatches}
-            setValue={val => setInput({ ...input, employmentMatches: val })}
-            options={
-              [
-                { title: "Yes", value: 1 },
-                { title: "No", value: -1 }
-              ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 17 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2  }}>Employment matches: </Typography>
+              < StyledToggleButtonGroup
+                value={input.employmentMatches}
+                setValue={val => setInput({ ...input, employmentMatches: val })}
+                options={
+                  [
+                    { title: "Yes", value: 1 },
+                    { title: "No", value: -1 }
+                  ]}
+              />
+            </Grid>
 
-          {/* Input 18 */}
-          < Select
-            label='Reference match: '
-            value={input.referencesMatch}
-            setValue={val => setInput({ ...input, referencesMatch: val })}
-            options={
-              [
-                { title: "Yes", value: 1 },
-                { title: "No", value: -1 }
-              ]}
-          />
+            <Grid item xs={6}>
+              {/* Input 18 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2  }}>Reference match: </Typography>
+              < StyledToggleButtonGroup
+                value={input.referencesMatch}
+                setValue={val => setInput({ ...input, referencesMatch: val })}
+                options={
+                  [
+                    { title: "Yes", value: 1 },
+                    { title: "No", value: -1 }
+                  ]}
+              />
+            </Grid>
+          </Grid>
 
-          {/* Input 19 */}
-          < Select
-            label='Address match: '
-            value={input.addressMatch}
-            setValue={val => setInput({ ...input, addressMatch: val })}
-            options={
-              [
-                { title: "Yes", value: 1 },
-                { title: "No", value: -1 }
-              ]}
-          />
 
-          {/* Input 20 */}
-          < Select
-            label='Bankruptcy/conprop? (<6 mos): '
-            value={input.bankruptcy}
-            setValue={val => setInput({ ...input, bankruptcy: val })}
-            options={
-              [
-                { title: "Yes", value: -1 },
-                { title: "No", value: 1 }
-              ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 19 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2  }}>Address match: </Typography>
+              < StyledToggleButtonGroup
+                value={input.addressMatch}
+                setValue={val => setInput({ ...input, addressMatch: val })}
+                options={
+                  [
+                    { title: "Yes", value: 1 },
+                    { title: "No", value: -1 }
+                  ]}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              {/* Input 20 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2  }}>Bankruptcy/conprop? -6 mos: </Typography>
+              < StyledToggleButtonGroup
+                  value={input.bankruptcy}
+                  setValue={val => setInput({ ...input, bankruptcy: val })}
+                  options={
+                    [
+                      { title: "Yes", value: -1 },
+                      { title: "No", value: 1 }
+                    ]}
+                />
+            </Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
 
           {/* Input 21 */}
-          < Select
-            label='Income source: '
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2}}>Income source: </Typography>
+          < StyledToggleButtonGroup
+            gridAutoFlow='column'
             value={input.incomeSource}
             setValue={val => setInput({ ...input, incomeSource: val })}
             options={
@@ -525,8 +577,9 @@ function App() {
           />
 
           {/* Input 22 */}
-          < Select
-            label='Employed: '
+          <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2}}>Employed: </Typography>
+          < StyledToggleButtonGroup
+            gridAutoFlow='column'
             value={input.employed}
             setValue={val => setInput({ ...input, employed: val })}
             options={
@@ -538,31 +591,38 @@ function App() {
               ]}
           />
 
-          {/* Input 23 */}
-          < Select
-            label='Employment Verification: '
-            value={input.employmentVerification}
-            setValue={val => setInput({ ...input, employmentVerification: val })}
-            options={
-              [
-                { title: "Good Standings", value: 1 },
-                { title: "Poor standings", value: -1 }
-              ]}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Input 23 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2}}>Employment Verification: </Typography>
+              < StyledToggleButtonGroup
+                label=''
+                value={input.employmentVerification}
+                setValue={val => setInput({ ...input, employmentVerification: val })}
+                options={
+                  [
+                    { title: "Good Standings", value: 1 },
+                    { title: "Poor standings", value: -1 }
+                  ]}
+              />
+            </Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
 
-          {/* Input 24 */}
-          < Select
-            label='Renewal? '
-            value={input.renewal}
-            setValue={val => setInput({ ...input, renewal: val })}
-            options={
-              [
-                { title: "2nd loan", value: 1 },
-                { title: "3rd loan", value: 3 },
-                { title: "4th+", value: 6 },
-                { title: "No", value: 0 }
-              ]}
-          />
+              {/* Input 24 */}
+              <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2, marginBottom: 2}}>Renewal? </Typography>
+              < StyledToggleButtonGroup
+                gridAutoFlow='column'
+                value={input.renewal}
+                setValue={val => setInput({ ...input, renewal: val })}
+                options={
+                  [
+                    { title: "2nd loan", value: 1 },
+                    { title: "3rd loan", value: 3 },
+                    { title: "4th+", value: 6 },
+                    { title: "No", value: 0 }
+                  ]}
+              />
 
           <StyledLoadingButton
             variant='contained'

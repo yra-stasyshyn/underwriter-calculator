@@ -20,7 +20,7 @@ const Select = (props: Props) => {
   const handleChange = (e: SelectChangeEvent) => setValue && setValue(+e.target.value);
 
   return (
-    <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "left", gap: 2, minWidth: 200 }} size="small">
+    <FormControl variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "left", gap: 2, minWidth: 200 }} size="medium">
       <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
       <MUISelect
         value={strValue}
@@ -28,7 +28,7 @@ const Select = (props: Props) => {
         displayEmpty
         disabled={!!disabled}
       >
-        {!disabled && <MenuItem disabled hidden value="">{`- select -`}</MenuItem>}
+        {!disabled && <MenuItem disabled hidden value="">{` Select `}</MenuItem>}
         {options.map((option, idx) => (
           <MenuItem key={`${label}-${idx}`} value={option.value.toString()}>{option.title}</MenuItem>
         ))}
