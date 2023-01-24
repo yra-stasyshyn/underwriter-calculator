@@ -10,8 +10,7 @@ import Select from './core/components/select/Select';
 import StyledToggleButtonGroup from './core/components/select/StyledToggleButtonGroup';
 import { InputData } from './core/interfaces/io.type';
 
-import Input from './core/components/input/Input';
-import InputPayday from './core/components/input/InputPayday';
+import InputGroup from './core/components/input/InputGroup';
 
 import "./App.css";
 import logoSrc from "./assets/images/logo.png";
@@ -137,7 +136,7 @@ function App() {
               <Grid container spacing={2}>
                 {balAfterPaydays.map((val, idx) => (
                   <Grid item xs={6}>
-                    <InputPayday
+                    <InputGroup
                       label={`Payday ${idx + 1}`}
                       index={idx}
                       value={val}
@@ -212,7 +211,7 @@ function App() {
               <Grid container spacing={2}>
                 {monthlyLoans.map((val, idx) => (
                   <Grid item xs={6}>
-                    <InputPayday
+                    <InputGroup
                       label={`Monthly loan ${idx + 1}:`}
                       index={idx}
                       value={val}
