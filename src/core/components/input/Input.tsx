@@ -1,8 +1,8 @@
-import { Stack, TextField, Typography } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
 
 interface Props {
-  label: string;
+  label?: string;
   value?: number;
   setValue: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
@@ -11,13 +11,14 @@ const Input = (props: Props) => {
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <Typography sx={{ fontWeight: "bold" }}>{label}</Typography>
       <TextField
+        fullWidth
         type="number"
-        variant="standard"
-        placeholder=""
-        size="small"
+        variant="outlined"
+        placeholder={label}
+        size="medium"
         value={value}
+        color="success"
         onChange={setValue}
       />
     </Stack>
