@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 
 import Select from './core/components/select/Select';
 import SelectBalance from './core/components/select/SelectBalance';
+import SelectPayday from './core/components/select/SelectPayday';
 import { InputData } from './core/interfaces/io.type';
 
 import Input from './core/components/input/Input';
@@ -200,7 +201,7 @@ function App() {
 
           {/* Input 2 */}
           <Typography variant="h6" color="#000" align="left" sx={{ marginTop: 2 }}>For the last 3 paydays, has income consistently lasted for at least 3 days? </Typography>
-          <Select
+          <SelectPayday
             value={input.incomeLastedForThreePaydays}
             setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
             options={[
