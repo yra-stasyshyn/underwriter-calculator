@@ -14,6 +14,7 @@ import Input from './core/components/input/Input';
 import "./App.css";
 import logoSrc from "./assets/images/logo.png";
 import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
+import ToggleButtonGroup from './core/components/toggle-button-group/ToggleButtonGroup';
 
 function App() {
   const [input, setInput] = useState<InputData>({});
@@ -195,7 +196,7 @@ function App() {
           />
 
           {/* Input 2 */}
-          <Select
+          <ToggleButtonGroup
             label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
             value={input.incomeLastedForThreePaydays}
             setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
@@ -203,7 +204,18 @@ function App() {
               { title: "Yes", value: 3 },
               { title: "No", value: -3 }
             ]}
+            gridAutoFlow="column"
+            gridTemplate="auto auto / auto auto"
           />
+          {/* <Select
+            label='For the last 3 paydays, has income consistently lasted for at least 3 days? '
+            value={input.incomeLastedForThreePaydays}
+            setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
+            options={[
+              { title: "Yes", value: 3 },
+              { title: "No", value: -3 }
+            ]}
+          /> */}
 
           {/* Input 3 */}
           <Select
