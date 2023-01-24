@@ -523,7 +523,7 @@ function App() {
 
         <Grid item xs={4}>
           <Card elevation={5} sx={{ padding: 4, borderRadius: 16, backgroundColor: "#fff", color: "#000" }}>
-            <CardContent>
+            <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Typography variant="h4" align="center" sx={{ marginBottom: 4, fontWeight: "bold" }}>Applicant Lending Result</Typography>
               {/* <Typography variant='h5' sx={{ fontWeight: "bold" }}>{`Score: ${score || 0}`}</Typography> */}
               <StyledLoadingButton
