@@ -131,24 +131,16 @@ function App() {
           <Card sx={{ padding: 4, borderRadius: 0 }}>
             <CardTitle>APPLICATION FINANCIAL INFORMATION</CardTitle>
             <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <SectionTitle>Balance after payday</SectionTitle>
               {/* Input 1 */}
-              <Grid container spacing={2}>
-                {balAfterPaydays.map((val, idx) => (
-                  <Grid item xs={6}>
-                    <InputGroup
-                      label={`Payday ${idx + 1}`}
-                      index={idx}
-                      value={val}
-                      onChange={handlePaydayChange}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
+              <InputGroup
+                label='Balance after payday'
+                subject='Payday'
+                values={balAfterPaydays}
+                onChange={handlePaydayChange}
+              />
 
               <SectionTitle>Avg. Balance</SectionTitle>
               <TextField
-                label="Avg. Balance"
                 hiddenLabel
                 id="avg-balance"
                 value={avgBalanceStringValue}
@@ -207,20 +199,22 @@ function App() {
               />
 
               {/* Input 5 */}
-              <SectionTitle>Monthly Loan Amount:</SectionTitle>
-              <Grid container spacing={2}>
-                {monthlyLoans.map((val, idx) => (
-                  <Grid item xs={6}>
-                    <InputGroup
-                      label={`Monthly loan ${idx + 1}:`}
-                      index={idx}
-                      value={val}
-                      onChange={handleMonthlyLoanChange}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
+              <InputGroup
+                label='Monthly Loan Amount:'
+                subject='Monthly loan'
+                values={monthlyLoans}
+                onChange={handleMonthlyLoanChange}
+              />
 
+              {/* <TextField
+                hiddenLabel
+                id="monthly-loans-amount"
+                value={avgBalanceStringValue}
+                variant="outlined"
+                size="medium"
+                disabled
+                sx={{ width: "50%" }}
+              /> */}
               <Select
                 label="Monthly Loans Amount: "
                 value={input.monthlyLoansAmount}
