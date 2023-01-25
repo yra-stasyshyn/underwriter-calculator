@@ -22,7 +22,7 @@ const Select = (props: Props) => {
 
   return (
     <FormControl variant="outlined" size="medium" fullWidth>
-      <SectionTitle>{label}</SectionTitle>
+      <SectionTitle>{`${label} (${strValue})`}</SectionTitle>
       <MUISelect
         value={strValue}
         onChange={handleChange}

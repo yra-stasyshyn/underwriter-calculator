@@ -147,7 +147,7 @@ function App() {
                 />
 
                 <Box>
-                  <SectionTitle>Avg. Balance</SectionTitle>
+                  <SectionTitle>{`Avg. Balance (${typeof input.avgBalance === "undefined" ? "" : input.avgBalance})`}</SectionTitle>
                   <TextField
                     hiddenLabel
                     id="avg-balance"
@@ -201,7 +201,7 @@ function App() {
                   options={[
                     { title: "0", value: -1 },
                     { title: "1-2", value: 2 },
-                    { title: "3-4", value: 1 }, // designed value is -1, but let's use 1 since -1 conflicts.
+                    { title: "3-4", value: 1 },
                     { title: "5-6", value: -2 },
                     { title: "7+", value: -3 }
                   ]}
@@ -216,7 +216,7 @@ function App() {
                 />
 
                 <Box>
-                  <SectionTitle>Monthly Loans Amount:</SectionTitle>
+                  <SectionTitle>{`Monthly Loans Amount: (${typeof input.monthlyLoansAmount === "undefined" ? "" : input.monthlyLoansAmount})`}</SectionTitle>
                   <TextField
                     hiddenLabel
                     id="monthly-loans-amount"

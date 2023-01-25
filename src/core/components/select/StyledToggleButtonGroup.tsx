@@ -26,9 +26,13 @@ export default function StyledToggleButtonGroup(props: Props) {
     setValue(newValue);
   };
 
+  const realValue = typeof value === "undefined" ? ""
+    : label === "Number of Microloans: " ? (value === 1 ? -1 : value)
+      : value;
+
   return (
     <Box>
-      <SectionTitle>{label}</SectionTitle>
+      <SectionTitle>{`${label} (${realValue})`}</SectionTitle>
       <StyledMUIToggleButtonGroup
         color="success"
         value={value}
