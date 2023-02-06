@@ -1,1 +1,1 @@
-export const NUM_OF_TOTAL_CASES = 36;
+export const NUM_OF_TOTAL_CASES = 70;
