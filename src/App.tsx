@@ -29,20 +29,21 @@ function App() {
   const [probabilityOfPayback, setProbabilityOfPayback] = useState<number | undefined>();
 
   const avgBalanceStringValue = useMemo(() => {
-    return input.avgBalance === -6 ? "<200"
-      : input.avgBalance === 1 ? "200-600"
-        : input.avgBalance === 2 ? "600-1000"
-          : input.avgBalance === 3 ? "1000-1500"
-            : input.avgBalance === 6 ? "1500+"
-              : "";
+    return input.avgBalance === -6 ? "below zero (negative)"
+      : input.avgBalance === 0 ? "<200"
+        : input.avgBalance === 4 ? "200-600"
+          : input.avgBalance === 8 ? "600-1000"
+            : input.avgBalance === 10 ? "1000-1500"
+              : input.avgBalance === 12 ? "1500+"
+                : "";
   }, [input.avgBalance]);
 
   const monthlyLoansStringValue = useMemo(() => {
     return input.monthlyLoansAmount === -1 ? "0"
-      : input.monthlyLoansAmount === 2 ? "1-500"
-        : input.monthlyLoansAmount === 0 ? "500-1000"
-          : input.monthlyLoansAmount === -2 ? "1000-1500"
-            : input.monthlyLoansAmount === -6 ? "1500-2000"
+      : input.monthlyLoansAmount === 4 ? "1-500"
+        : input.monthlyLoansAmount === -2 ? "500-1000"
+          : input.monthlyLoansAmount === -4 ? "1000-1500"
+            : input.monthlyLoansAmount === -8 ? "1500-2000"
               : "";
   }, [input.monthlyLoansAmount]);
 
@@ -50,11 +51,12 @@ function App() {
     const avg = (balAfterPaydays.reduce((prev, next) => {
       return ((prev || 0) + (next || 0));
     }, 0) || 0) / 6;
-    const newAvgBalance = avg < 200 ? -6
-      : avg < 600 ? 1
-        : avg < 1000 ? 2
-          : avg < 1500 ? 3
-            : 6;
+    const newAvgBalance = avg < 0 ? -6
+      : avg < 200 ? 0
+        : avg < 600 ? 4
+          : avg < 1000 ? 8
+            : avg < 1500 ? 10
+              : 12;
     setInput({
       ...input,
       avgBalance: newAvgBalance
@@ -67,10 +69,10 @@ function App() {
       return ((prev || 0) + (next || 0));
     }, 0) || 0) * 2;
     const newMonthlyLoansAmount = total === 0 ? -1
-      : total < 500 ? 2
-        : total < 1000 ? 0
-          : total < 1500 ? -2
-            : -6;
+      : total < 500 ? 4
+        : total < 1000 ? -2
+          : total < 1500 ? -4
+            : -8;
     setInput({
       ...input,
       monthlyLoansAmount: newMonthlyLoansAmount
@@ -110,13 +112,10 @@ function App() {
       (input.gambling || 0) +
       (input.marijuana || 0) +
       (input.bankAccountTimeline || 0) +
-      (input.employmentMatches || 0) +
-      (input.referencesMatch || 0) +
       (input.addressMatch || 0) +
       (input.bankruptcy || 0) +
       (input.incomeSource || 0) +
       (input.employed || 0) +
-      (input.employmentVerification || 0) +
       (input.renewal || 0);
 
     const _probabilityOfPayback = +(_score / NUM_OF_TOTAL_CASES * 100).toFixed(2);
@@ -136,18 +135,18 @@ function App() {
         <Grid container spacing={4}>
           <Grid item xs={8}>
             <Card sx={{ padding: 4, borderRadius: 0 }}>
-              <CardTitle>APPLICATION FINANCIAL INFORMATION</CardTitle>
+              <CardTitle>Application Financial Information - Balance / Savings</CardTitle>
               <CardContent sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 {/* Input 1 */}
                 <InputGroup
-                  label='Balance after payday'
+                  label='Balance after payday - most recent date back 3 months.'
                   subject='Payday'
                   values={balAfterPaydays}
                   onChange={handlePaydayChange}
                 />
 
                 <Box>
-                  <SectionTitle>{`Avg. Balance (${typeof input.avgBalance === "undefined" ? "" : input.avgBalance})`}</SectionTitle>
+                  <SectionTitle>{`Average balance (${typeof input.avgBalance === "undefined" ? "" : input.avgBalance})`}</SectionTitle>
                   <TextField
                     hiddenLabel
                     id="avg-balance"
@@ -167,28 +166,28 @@ function App() {
                   gridTemplate='auto auto / auto auto'
                   setValue={val => setInput({ ...input, incomeLastedForThreePaydays: val })}
                   options={[
-                    { title: "Yes", value: 3 },
-                    { title: "No", value: -3 }
+                    { title: "Yes", value: 4 },
+                    { title: "No", value: -2 }
                   ]}
                 />
               </CardContent>
             </Card>
 
             <Card sx={{ marginTop: 5, padding: 4, borderRadius: 0 }}>
-              <CardTitle>ADDITIONAL INFORMATION</CardTitle>
+              <CardTitle>Additional Information - Income vs. Debt+Repayment</CardTitle>
               <CardContent sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
 
                 {/* Input 3 */}
                 <StyledToggleButtonGroup
-                  label="Employed Monthly Income : "
+                  label="Employed Monthly Income: "
                   value={input.employedMonthlyIncome}
                   gridAutoFlow='column'
                   setValue={val => setInput({ ...input, employedMonthlyIncome: val })}
                   options={[
-                    { title: "1500-2000", value: -4 },
-                    { title: "2000-2500", value: -1 },
-                    { title: "2500-4000", value: 2 },
-                    { title: "4000+", value: 4 },
+                    { title: "Below 1800", value: -8 },
+                    { title: "1800-2500", value: 1 },
+                    { title: "2500-4000", value: 5 },
+                    { title: "4000+", value: 8 },
                   ]}
                 />
 
@@ -200,16 +199,16 @@ function App() {
                   gridAutoFlow='column'
                   options={[
                     { title: "0", value: -1 },
-                    { title: "1-2", value: 2 },
+                    { title: "1-2", value: 4 },
                     { title: "3-4", value: 1 },
-                    { title: "5-6", value: -2 },
-                    { title: "7+", value: -3 }
+                    { title: "5-6", value: -3 },
+                    { title: "7+", value: -6 }
                   ]}
                 />
 
                 {/* Input 5 */}
                 <InputGroup
-                  label='Monthly Loan Amount:'
+                  label='Monthly Loan Amount: '
                   subject='Monthly loan'
                   values={monthlyLoans}
                   onChange={handleMonthlyLoanChange}
@@ -232,13 +231,14 @@ function App() {
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
                     <Select
-                      label='New loans within 30 days:'
+                      label='New loans within 30 days: '
                       value={input.newLoansWithin30Days}
                       setValue={val => setInput({ ...input, newLoansWithin30Days: val })}
                       options={[
-                        { title: "0", value: 1 },
-                        { title: "1-2", value: -2 },
-                        { title: "2-3", value: -3 }
+                        { title: "0", value: 2 },
+                        { title: "0-1", value: 1 },
+                        { title: "2-3", value: -2 },
+                        { title: "4+", value: -6 }
                       ]}
                     />
                   </Grid>
@@ -253,8 +253,9 @@ function App() {
                       value={input.numOfNSFWithin30Days}
                       setValue={val => setInput({ ...input, numOfNSFWithin30Days: val })}
                       options={[
-                        { title: "Less than 1", value: 1 },
-                        { title: "2+", value: -3 }
+                        { title: "None or Zero", value: 2 },
+                        { title: "1", value: -1 },
+                        { title: "2+", value: -6 }
                       ]}
                     />
                   </Grid>
@@ -267,8 +268,9 @@ function App() {
                       setValue={val => setInput({ ...input, numOfNSFWithin60Days: val })}
                       options={
                         [
-                          { title: "Less than 1", value: 1 },
-                          { title: "2+", value: -2 }
+                          { title: "None or Zero", value: 2 },
+                          { title: "1", value: -1 },
+                          { title: "2+", value: -4 }
                         ]}
                     />
                   </Grid>
@@ -282,8 +284,9 @@ function App() {
                       setValue={val => setInput({ ...input, numOfNSFWithin90Days: val })}
                       options={
                         [
-                          { title: "Less than 1", value: 1 },
-                          { title: "2+", value: -1 }
+                          { title: "None or Zero", value: 2 },
+                          { title: "1", value: -1 },
+                          { title: "2+", value: -2 }
                         ]}
                     />
                   </Grid>
@@ -300,8 +303,9 @@ function App() {
                       setValue={val => setInput({ ...input, numOfPaymentOppositionWithin30Days: val })}
                       options={
                         [
-                          { title: "Less than 1", value: 1 },
-                          { title: "2+", value: -3 }
+                          { title: "None or Zero", value: 2 },
+                          { title: "1", value: -1 },
+                          { title: "2+", value: -6 }
                         ]}
                     />
                   </Grid>
@@ -313,8 +317,9 @@ function App() {
                       setValue={val => setInput({ ...input, numOfPaymentOppositionWithin60Days: val })}
                       options={
                         [
-                          { title: "Less than 1", value: 1 },
-                          { title: "2+", value: -2 }
+                          { title: "None or Zero", value: 2 },
+                          { title: "1", value: -1 },
+                          { title: "2+", value: -4 }
                         ]}
                     />
                   </Grid>
@@ -329,8 +334,9 @@ function App() {
                       setValue={val => setInput({ ...input, numOfPaymentOppositionWithin90Days: val })}
                       options={
                         [
-                          { title: "Less than 1", value: 1 },
-                          { title: "2+", value: -1 }
+                          { title: "None or Zero", value: 2 },
+                          { title: "1", value: -1 },
+                          { title: "2+", value: -2 }
                         ]}
                     />
                   </Grid>
@@ -341,20 +347,20 @@ function App() {
 
 
             <Card sx={{ marginTop: 5, padding: 4, borderRadius: 0 }}>
-              <CardTitle>LOAN AMOUNT INFORMATION</CardTitle>
+              <CardTitle>Loan Amount Information - Other Information</CardTitle>
               <CardContent sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
 
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
                     {/* Input 13 */}
                     <StyledToggleButtonGroup
-                      label="Overdraft: "
+                      label="Balance during payday overdraft: "
                       value={input.overDraft}
                       setValue={val => setInput({ ...input, overDraft: val })}
                       options={
                         [
-                          { title: "Yes", value: -1 },
-                          { title: "No", value: 1 }
+                          { title: "Yes", value: -4 },
+                          { title: "No", value: 2 }
                         ]}
                     />
                   </Grid>
@@ -362,13 +368,13 @@ function App() {
                   <Grid item xs={6}>
                     {/* Input 14 */}
                     <StyledToggleButtonGroup
-                      label="Gambling: "
+                      label="Gambling too much? (25% or more of salary): "
                       value={input.gambling}
                       setValue={val => setInput({ ...input, gambling: val })}
                       options={
                         [
-                          { title: "Yes", value: -1 },
-                          { title: "No", value: 1 }
+                          { title: "Yes", value: -2 },
+                          { title: "No", value: 2 }
                         ]}
                     />
                   </Grid>
@@ -378,13 +384,13 @@ function App() {
                   <Grid item xs={6}>
                     {/* Input 15 */}
                     <StyledToggleButtonGroup
-                      label="Marijuana: "
+                      label="Marijuana or Cannabis use: "
                       value={input.marijuana}
                       setValue={val => setInput({ ...input, marijuana: val })}
                       options={
                         [
                           { title: "Yes", value: -1 },
-                          { title: "No", value: 1 }
+                          { title: "No", value: 2 }
                         ]}
                     />
                   </Grid>
@@ -399,9 +405,10 @@ function App() {
                   setValue={val => setInput({ ...input, bankAccountTimeline: val })}
                   options={
                     [
-                      { title: ">1 month", value: -3 },
-                      { title: "2+ months", value: -2 },
-                      { title: "3+ months", value: 1 }
+                      { title: "-3 > 1", value: -12 },
+                      { title: "2+ mos w/ 3 payday", value: -3 },
+                      { title: "3-4 mos w/ 6 payday", value: 4 },
+                      { title: "5+ mos above", value: 8 }
                     ]}
                 />
 
@@ -409,13 +416,13 @@ function App() {
                   <Grid item xs={6}>
                     {/* Input 17 */}
                     <StyledToggleButtonGroup
-                      label="Employment matches: "
-                      value={input.employmentMatches}
-                      setValue={val => setInput({ ...input, employmentMatches: val })}
+                      label="Address match: "
+                      value={input.addressMatch}
+                      setValue={val => setInput({ ...input, addressMatch: val })}
                       options={
                         [
-                          { title: "Yes", value: 1 },
-                          { title: "No", value: -1 }
+                          { title: "Yes", value: 2 },
+                          { title: "No", value: 0 }
                         ]}
                     />
                   </Grid>
@@ -423,51 +430,20 @@ function App() {
                   <Grid item xs={6}>
                     {/* Input 18 */}
                     <StyledToggleButtonGroup
-                      label="Reference match: "
-                      value={input.referencesMatch}
-                      setValue={val => setInput({ ...input, referencesMatch: val })}
-                      options={
-                        [
-                          { title: "Yes", value: 1 },
-                          { title: "No", value: -1 }
-                        ]}
-                    />
-                  </Grid>
-                </Grid>
-
-
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    {/* Input 19 */}
-                    <StyledToggleButtonGroup
-                      label="Address match: "
-                      value={input.addressMatch}
-                      setValue={val => setInput({ ...input, addressMatch: val })}
-                      options={
-                        [
-                          { title: "Yes", value: 1 },
-                          { title: "No", value: -1 }
-                        ]}
-                    />
-                  </Grid>
-
-                  <Grid item xs={6}>
-                    {/* Input 20 */}
-                    <StyledToggleButtonGroup
-                      label="Bankruptcy/conprop? -6 mos: "
+                      label="Bankruptcy less than 6 mos: "
                       value={input.bankruptcy}
                       setValue={val => setInput({ ...input, bankruptcy: val })}
                       options={
                         [
-                          { title: "Yes", value: -1 },
-                          { title: "No", value: 1 }
+                          { title: "Yes", value: -12 },
+                          { title: "None or paying beyond 6 mos", value: 2 }
                         ]}
                     />
                   </Grid>
                   <Grid item xs={6}></Grid>
                 </Grid>
 
-                {/* Input 21 */}
+                {/* Input 19 */}
                 <StyledToggleButtonGroup
                   label="Income source: "
                   gridAutoFlow='column'
@@ -476,13 +452,13 @@ function App() {
                   options={
                     [
                       { title: "Employed", value: 2 },
-                      { title: "PEnsion", value: 1 },
-                      { title: "Employment insurance", value: 0 },
-                      { title: "Not Employed", value: -1 }
+                      { title: "Pension", value: 1 },
+                      { title: "Employment Insurance", value: 0 },
+                      { title: "Not employed/Self-employed", value: -12 }
                     ]}
                 />
 
-                {/* Input 22 */}
+                {/* Input 20 */}
                 <StyledToggleButtonGroup
                   label="Employed: "
                   gridAutoFlow='column'
@@ -490,42 +466,25 @@ function App() {
                   setValue={val => setInput({ ...input, employed: val })}
                   options={
                     [
-                      { title: "Less than month", value: -3 },
-                      { title: "1-2 months", value: -2 },
-                      { title: "3-5 months", value: 1 },
-                      { title: "6 months +", value: 2 }
+                      { title: "Less than month", value: -12 },
+                      { title: "1-2 mos", value: -2 },
+                      { title: "3-5 mos", value: 2 },
+                      { title: "6 mos", value: 4 }
                     ]}
                 />
 
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    {/* Input 23 */}
-                    <StyledToggleButtonGroup
-                      label="Employment Verification: "
-                      value={input.employmentVerification}
-                      setValue={val => setInput({ ...input, employmentVerification: val })}
-                      options={
-                        [
-                          { title: "Good Standings", value: 1 },
-                          { title: "Poor standings", value: -1 }
-                        ]}
-                    />
-                  </Grid>
-                  <Grid item xs={6}></Grid>
-                </Grid>
-
-                {/* Input 24 */}
+                {/* Input 21 */}
                 <StyledToggleButtonGroup
-                  label="Renewal? "
+                  label="Renewal: "
                   gridAutoFlow='column'
                   value={input.renewal}
                   setValue={val => setInput({ ...input, renewal: val })}
                   options={
                     [
-                      { title: "2nd loan", value: 1 },
-                      { title: "3rd loan", value: 3 },
-                      { title: "4th+", value: 6 },
-                      { title: "No", value: 0 }
+                      { title: "2nd loan", value: 7 },
+                      { title: "3rd loan", value: 10.5 },
+                      { title: "4th loan & Beyond", value: 14 },
+                      { title: "no - new", value: 0 }
                     ]}
                 />
               </CardContent >
