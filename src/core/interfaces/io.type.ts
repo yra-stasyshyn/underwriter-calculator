@@ -19,7 +19,6 @@ export type InputData = {
   bankruptcy?: number;
   incomeSource?: number;
   employed?: number;
-  renewal?: number;
 }
 
 export type OutoutData = {

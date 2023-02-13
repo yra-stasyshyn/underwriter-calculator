@@ -25,7 +25,9 @@ function App() {
   const [buttonLabel, setButtonLabel] = useState("CALCULATE");
   const [isCalculating, setIsCalculating] = useState(false);
 
-  // const [score, setScore] = useState<number | undefined>();
+  const [score, setScore] = useState<number | undefined>();
+  const [renewalBonusValue, setRenewalBonusValue] = useState<number | undefined>();
+  const [renewalStringValue, setRenewalStringValue] = useState("");
   const [probabilityOfPayback, setProbabilityOfPayback] = useState<number | undefined>();
 
   const avgBalanceStringValue = useMemo(() => {
@@ -115,13 +117,19 @@ function App() {
       (input.addressMatch || 0) +
       (input.bankruptcy || 0) +
       (input.incomeSource || 0) +
-      (input.employed || 0) +
-      (input.renewal || 0);
+      (input.employed || 0);
 
-    const _probabilityOfPayback = +(_score / NUM_OF_TOTAL_CASES * 100).toFixed(2);
+    const [renewal, renewalLabel] = _score >= 63 ? [14, "4th loan & Beyond"]
+      : _score >= 59.5 ? [10.5, "3rd loan"]
+        : _score >= 56 ? [7, "2nd loan"]
+          : [0, "no - new"];
+
+    const _probabilityOfPayback = +((_score + renewal) / NUM_OF_TOTAL_CASES * 100).toFixed(2);
+    setScore(_score);
+    setRenewalBonusValue(renewal);
+    setRenewalStringValue(renewalLabel);
 
     setTimeout(() => {
-      // setScore(_score);
       setProbabilityOfPayback(_probabilityOfPayback);
       setIsCalculating(false);
       setButtonLabel("CALCULATE");
@@ -137,6 +145,19 @@ function App() {
             <Card sx={{ padding: 4, borderRadius: 0 }}>
               <CardTitle>Application Financial Information - Balance / Savings</CardTitle>
               <CardContent sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <Box>
+                  <SectionTitle>{`Renewal: (${typeof renewalBonusValue === "undefined" ? "" : renewalBonusValue})`}</SectionTitle>
+                  <TextField
+                    hiddenLabel
+                    id="renewal"
+                    value={renewalStringValue}
+                    variant="outlined"
+                    size="medium"
+                    disabled
+                    sx={{ width: "50%" }}
+                  />
+                </Box>
+
                 {/* Input 1 */}
                 <InputGroup
                   label='Balance after payday - most recent date back 3 months.'
@@ -472,21 +493,6 @@ function App() {
                       { title: "6 mos", value: 4 }
                     ]}
                 />
-
-                {/* Input 21 */}
-                <StyledToggleButtonGroup
-                  label="Renewal: "
-                  gridAutoFlow='column'
-                  value={input.renewal}
-                  setValue={val => setInput({ ...input, renewal: val })}
-                  options={
-                    [
-                      { title: "2nd loan", value: 7 },
-                      { title: "3rd loan", value: 10.5 },
-                      { title: "4th loan & Beyond", value: 14 },
-                      { title: "no - new", value: 0 }
-                    ]}
-                />
               </CardContent >
             </Card >
           </Grid>
@@ -508,7 +514,9 @@ function App() {
                   <span>{buttonLabel}</span>
                 </StyledLoadingButton>
                 <Typography variant='h5' align='center' sx={{ fontWeight: "bold", marginTop: 4 }}>{`Probability of Payback:`}</Typography>
-                <Typography variant='h4' align='center' sx={{ fontWeight: "bold" }}>{`${probabilityOfPayback || 0}%`}</Typography>
+                <Typography variant='h4' align='center' sx={{ fontWeight: "bold" }}>
+                  {`${probabilityOfPayback || 0}% = (${score || 0} + ${renewalBonusValue || 0}) / 70`}
+                </Typography>
               </CardContent>
             </StickyCard>
           </Grid>
