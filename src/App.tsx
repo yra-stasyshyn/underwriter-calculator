@@ -18,17 +18,13 @@ import { NUM_OF_TOTAL_CASES } from './core/constants/base.const';
 
 function App() {
   const [input, setInput] = useState<InputData>({});
-
   const [balAfterPaydays, setBalAfterPaydays] = useState<Array<number | undefined>>(Array.from({ length: 6 }, (_v) => undefined));
   const [monthlyLoans, setMonthlyLoans] = useState<Array<number | undefined>>(Array.from({ length: 10 }, (_v) => undefined));
-
   const [buttonLabel, setButtonLabel] = useState("CALCULATE");
   const [isCalculating, setIsCalculating] = useState(false);
-
   const [score, setScore] = useState<number | undefined>();
-  const [renewalBonusValue, setRenewalBonusValue] = useState<number | undefined>();
-  const [renewalStringValue, setRenewalStringValue] = useState("");
   const [probabilityOfPayback, setProbabilityOfPayback] = useState<number | undefined>();
+  const [limitedProbabilityOfPayback, setLimitedProbabilityOfPayback] = useState<number | undefined>();
 
   const avgBalanceStringValue = useMemo(() => {
     return input.avgBalance === -6 ? "below zero (negative)"
@@ -86,13 +82,13 @@ function App() {
     const temp = [...balAfterPaydays];
     temp[index] = newVal;
     setBalAfterPaydays(temp);
-  }
+  };
 
   const handleMonthlyLoanChange = (index: number, newVal: number) => {
     const temp = [...monthlyLoans];
     temp[index] = newVal;
     setMonthlyLoans(temp);
-  }
+  };
 
   const handleCalculate = () => {
     setIsCalculating(true);
@@ -119,22 +115,24 @@ function App() {
       (input.incomeSource || 0) +
       (input.employed || 0);
 
-    const [renewal, renewalLabel] = _score >= 63 ? [14, "4th loan & Beyond"]
-      : _score >= 59.5 ? [10.5, "3rd loan"]
-        : _score >= 56 ? [7, "2nd loan"]
-          : [0, "no - new"];
-
-    const _probabilityOfPayback = +((_score + renewal) / NUM_OF_TOTAL_CASES * 100).toFixed(2);
+    const _probabilityOfPayback = +((_score + (input.renewalBonusValue || 0)) / NUM_OF_TOTAL_CASES * 100).toFixed(2);
     setScore(_score);
-    setRenewalBonusValue(renewal);
-    setRenewalStringValue(renewalLabel);
 
     setTimeout(() => {
       setProbabilityOfPayback(_probabilityOfPayback);
+      setLimitedProbabilityOfPayback(
+        Math.min(_probabilityOfPayback,
+          input.renewalBonusValue === 0 ? 70
+            : input.renewalBonusValue === 7 ? 80
+              : input.renewalBonusValue === 10.5 ? 85
+                : input.renewalBonusValue === 14 ? 90
+                  : 0
+        )
+      );
       setIsCalculating(false);
       setButtonLabel("CALCULATE");
     }, 2000);
-  }
+  };
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -145,18 +143,21 @@ function App() {
             <Card sx={{ padding: 4, borderRadius: 0 }}>
               <CardTitle>Application Financial Information - Balance / Savings</CardTitle>
               <CardContent sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                <Box>
-                  <SectionTitle>{`Renewal: (${typeof renewalBonusValue === "undefined" ? "" : renewalBonusValue})`}</SectionTitle>
-                  <TextField
-                    hiddenLabel
-                    id="renewal"
-                    value={renewalStringValue}
-                    variant="outlined"
-                    size="medium"
-                    disabled
-                    sx={{ width: "50%" }}
-                  />
-                </Box>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <Select
+                      label={`Renewal: `}
+                      value={input.renewalBonusValue}
+                      setValue={val => setInput({ ...input, renewalBonusValue: val })}
+                      options={[
+                        { title: "4th loan & Beyond", value: 14 },
+                        { title: "3rd loan", value: 10.5 },
+                        { title: "2nd loan", value: 7 },
+                        { title: "no - new", value: 0 }
+                      ]}
+                    />
+                  </Grid>
+                </Grid>
 
                 {/* Input 1 */}
                 <InputGroup
@@ -515,7 +516,7 @@ function App() {
                 </StyledLoadingButton>
                 <Typography variant='h5' align='center' sx={{ fontWeight: "bold", marginTop: 4 }}>{`Probability of Payback:`}</Typography>
                 <Typography variant='h4' align='center' sx={{ fontWeight: "bold" }}>
-                  {`${probabilityOfPayback || 0}% = (${score || 0} + ${renewalBonusValue || 0}) / 70`}
+                  {`${limitedProbabilityOfPayback || 0}% (${probabilityOfPayback || 0}) = (${score || 0} + ${input.renewalBonusValue || 0}) / 70`}
                 </Typography>
               </CardContent>
             </StickyCard>
