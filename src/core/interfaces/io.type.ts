@@ -1,4 +1,5 @@
 export type InputData = {
+  renewalBonusValue?: number;
   avgBalance?: number;
   incomeLastedForThreePaydays?: number;
   employedMonthlyIncome?: number;
@@ -19,9 +20,9 @@ export type InputData = {
   bankruptcy?: number;
   incomeSource?: number;
   employed?: number;
-}
+};
 
 export type OutoutData = {
   score?: number;
   probabilityOfPayback?: number;
-}
+};
